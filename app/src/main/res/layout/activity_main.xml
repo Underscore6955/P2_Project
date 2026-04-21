@@ -6,14 +6,199 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/activeTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.05"
+        >
+        <ImageButton
+            android:id="@+id/active1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            android:layout_marginEnd="40dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/active2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activeTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.01"
+        >
+        <ImageButton
+            android:id="@+id/active3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            android:layout_marginEnd="30dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/active4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            android:layout_marginEnd="30dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+        <ImageButton
+            android:id="@+id/active5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </LinearLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        android:useDefaultMargins="true">
+
+        <ImageButton
+            android:id="@+id/inventory0"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory4"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory6"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory7"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory8"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory9"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory10"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/inventory11"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/img"
+            app:layout_columnWeight="1"
+            app:layout_gravity="center"
+            app:layout_rowWeight="1"
+            tools:ignore="SpeakableTextPresentCheck" />
+    </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
