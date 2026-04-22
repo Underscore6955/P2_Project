@@ -14,12 +14,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.lang.reflect.Member;
 
-import IdleGame.Animal;
-import IdleGame.Inventory;
+import IdleGame.*;
+import IdleGame.Inventory.ActiveSlot;
+import IdleGame.Inventory.InventorySlot;
 
 public class MainActivity extends AppCompatActivity {
-public static InventorySlot[] inventorySlots = new InventorySlot[12];
-ActiveSlot[] activeSlots = new ActiveSlot[5];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,54 +36,15 @@ void InsertButtons()
 {
     for (int i = 0; i <= 11; i++)
     {
-        inventorySlots[i] = new InventorySlot(i, NewButton("inventory", i));
+        Inventory.inventorySlots[i] = new InventorySlot(i, NewButton("inventory", i));
     }
     for (int i = 0; i <= 5; i++)
     {
-        activeSlots[i] = new ActiveSlot(i, NewButton("active", i));
+        Inventory.activeSlots[i] = new ActiveSlot(i, NewButton("active", i));
     }
 }
 ImageButton NewButton(String type, Integer id)
 {
     return findViewById(getResources().getIdentifier((type + id), "id", getPackageName()));
-}
-
-public class InventorySlot
-{
-    public Animal content;
-    Integer id;
-    ImageButton button;
-    public InventorySlot(Integer curId, ImageButton curButton)
-    {
-        id = curId;
-        button = curButton;
-        curButton.setOnClickListener(new View.OnClickListener()
-            {
-            public void onClick(View v)
-                {
-                    Log.d("Press", ("You pressed button " + id));
-                }
-            }
-        );
-    }
-}
-public class ActiveSlot
-{
-    Animal content;
-    Integer id;
-    ImageButton button;
-    public ActiveSlot(Integer curId, ImageButton curButton)
-    {
-        id = curId;
-        button = curButton;
-        curButton.setOnClickListener(new View.OnClickListener()
-            {
-            public void onClick(View v)
-                {
-                    Log.d("Press", ("You pressed button " + id));
-                }
-            }
-        );
-    }
 }
 }
