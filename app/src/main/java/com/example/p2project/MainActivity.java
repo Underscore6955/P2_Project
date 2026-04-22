@@ -1,9 +1,6 @@
 package com.example.p2project;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -12,11 +9,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import java.lang.reflect.Member;
-
-import IdleGame.*;
-import IdleGame.Inventory.ActiveSlot;
-import IdleGame.Inventory.InventorySlot;
+import com.example.p2project.IdleGame.Animal;
+import com.example.p2project.IdleGame.Inventory;
+import com.example.p2project.IdleGame.Inventory.ActiveSlot;
+import com.example.p2project.IdleGame.Inventory.InventorySlot;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             InsertButtons();
+            Inventory.inventory.add(new Animal("evilsauce",1000f));
+            Inventory.inventory.add(new Animal("veryevilsauce",1000f));
+            Inventory.inventory.add(new Animal("nicesauce",1000f));
+            Inventory.UpdateInventory();
             return insets;
         });
     }
@@ -38,7 +38,7 @@ void InsertButtons()
     {
         Inventory.inventorySlots[i] = new InventorySlot(i, NewButton("inventory", i));
     }
-    for (int i = 0; i <= 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         Inventory.activeSlots[i] = new ActiveSlot(i, NewButton("active", i));
     }

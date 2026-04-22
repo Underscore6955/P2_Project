@@ -1,4 +1,4 @@
-package IdleGame;
+package com.example.p2project.IdleGame;
 
 public class Animal
 {
