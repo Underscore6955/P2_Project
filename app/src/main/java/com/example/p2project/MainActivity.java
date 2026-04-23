@@ -25,9 +25,15 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             InsertButtons();
-            Inventory.inventory.add(new Animal("evilsauce",1000f));
-            Inventory.inventory.add(new Animal("veryevilsauce",1000f));
-            Inventory.inventory.add(new Animal("nicesauce",1000f));
+            Inventory.inventory.add(new Animal("Bear",1000f));
+            Inventory.inventory.add(new Animal("Cat",1000f));
+            Inventory.inventory.add(new Animal("Chameleon",1000f));
+            Inventory.inventory.add(new Animal("Chinchilla",1000f));
+            Inventory.inventory.add(new Animal("Crab",1000f));
+            Inventory.inventory.add(new Animal("Donkey",1000f));
+            Inventory.inventory.add(new Animal("Fox",1000f));
+            Inventory.inventory.add(new Animal("Jellyfish",1000f));
+            Inventory.inventory.add(new Animal("Panda",1000f));
             Inventory.UpdateInventory();
             return insets;
         });

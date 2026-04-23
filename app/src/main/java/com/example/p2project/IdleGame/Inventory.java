@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Inventory
 {
-    static String defaultIcon = "img";
+    static String defaultIcon = "inv_background";
     public static InventorySlot[] inventorySlots = new InventorySlot[12];
     public static ActiveSlot[] activeSlots = new ActiveSlot[5];
     static Integer curSelect;
