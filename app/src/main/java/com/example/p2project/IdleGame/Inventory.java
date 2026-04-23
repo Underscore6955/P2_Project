@@ -43,7 +43,7 @@ public class Inventory
         ImageButton button;
         public void UpdateIcon()
         {
-            button.setBackground(button.getContext().getResources().getDrawable(button.getContext().getResources().getIdentifier((content != null) ? content.name : defaultIcon, "drawable", button.getContext().getPackageName())));
+            button.setBackground(button.getContext().getResources().getDrawable(button.getContext().getResources().getIdentifier((content != null) ? content.name.toLowerCase() : defaultIcon, "drawable", button.getContext().getPackageName())));
         }
     }
     public static class InventorySlot extends InventoryButton
@@ -57,7 +57,7 @@ public class Inventory
                 public void onClick(View v)
                     {
                     Log.d("Press", ("You pressed button " + id));
-                    if (Objects.equals(curSelect, id)) { curSelect = null; return;}
+                    if (Objects.equals(curSelect, id) || content == null) { curSelect = null; return;}
                     curSelect = id;
                     }
                 }
