@@ -5,7 +5,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="HardcodedText"
     tools:context=".MainActivity">
+
+    <LinearLayout
+        android:adjustViewBounds="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+        <!--a sample image view for the preview purpose-->
+        <ImageView
+            android:id="@+id/backgroundImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="0dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/day_background"
+            android:src="@drawable/day_background" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/activeTop"
         android:layout_width="wrap_content"
