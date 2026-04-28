@@ -18,7 +18,7 @@ import com.example.p2project.IdleGame.Inventory.ActiveSlot;
 import com.example.p2project.IdleGame.Inventory.InventorySlot;
 
 public class MainActivity extends AppCompatActivity {
-    static Boolean invStarted;
+    static Boolean invStarted = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
