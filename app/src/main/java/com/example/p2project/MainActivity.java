@@ -20,6 +20,7 @@ import com.example.p2project.IdleGame.Inventory.InventorySlot;
 public class MainActivity extends AppCompatActivity {
 
     @SuppressLint("UseCompatLoadingForDrawables")
+    static Boolean invStarted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
