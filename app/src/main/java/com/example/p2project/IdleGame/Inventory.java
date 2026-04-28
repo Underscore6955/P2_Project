@@ -7,7 +7,7 @@ import android.widget.ImageButton;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Inventory
+public class    Inventory
 {
     static String defaultIcon = "inv_background";
     public static InventorySlot[] inventorySlots = new InventorySlot[12];
