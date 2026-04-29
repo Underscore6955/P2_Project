@@ -7,7 +7,7 @@ import java.time.*;
 
 public class DayNightSystem{
     public ImageView background;
-    public boolean day = true;
+    public static boolean day = true;
     LocalTime time = LocalTime.now();
     LocalTime bedTime = LocalTime.of(21, 0);
     LocalTime awakeTime = LocalTime.of(9, 0);
