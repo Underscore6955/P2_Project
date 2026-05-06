@@ -21,13 +21,16 @@ import com.example.p2project.IdleGame.Inventory;
 import com.example.p2project.IdleGame.Inventory.ActiveSlot;
 import com.example.p2project.IdleGame.Inventory.InventorySlot;
 import com.example.p2project.IdleGame.CurrencyTracker;
+import com.example.p2project.IdleGame.Encoding;
 
+import java.io.IOException;
 import java.time.*;
 
 public class MainActivity extends AppCompatActivity {
-    static Boolean invStarted = false;
     public TextView treatView;
     public TextView earnView;
+    Encoding encoding = new Encoding(this);
+    Boolean finishedLoading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +44,12 @@ public class MainActivity extends AppCompatActivity {
         });
         treatView = findViewById(R.id.treat_view);
         earnView = findViewById(R.id.earn_view);
-        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
-        settings.edit().putBoolean("firstRun", true).apply();
-        if (settings.getBoolean("firstRun", true))
+        SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
+        /*data.edit().putBoolean("firstRun", true).apply();
+        data.edit().putBoolean("hasBeenSaved", false).apply();*/
+        InsertButtons();
+        if (data.getBoolean("firstRun", true))
         {
-            InsertButtons();
             Inventory.inventory.add(new Animal("Bear",1000L, 1L));
             Inventory.inventory.add(new Animal("Cat",1000L, 1L));
             Inventory.inventory.add(new Animal("Chameleon",1000L, 1L));
@@ -56,17 +60,20 @@ public class MainActivity extends AppCompatActivity {
             Inventory.inventory.add(new Animal("Jellyfish",1000L, 1L));
             Inventory.inventory.add(new Animal("Panda",1000L, 1L));
             Inventory.UpdateInventory();
-            settings.edit().putBoolean("firstRun", false).apply();
+            data.edit().putBoolean("firstRun", false).apply();
         }
         DayNightSystem dayNightSystem = new DayNightSystem();
         dayNightSystem.background = findViewById(R.id.backgroundImg);
         dayNightSystem.Time();
+        finishedLoading = true;
     }
     @Override
     public void onResume()
     {
         super.onResume();
-        if (getSharedPreferences("settings", MODE_PRIVATE).getBoolean("firstRun", true)) return;
+        SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
+        if (data.getBoolean("firstRun", true)) return;
+        if (data.getBoolean("hasBeenSaved", false)) {try {encoding.loadInventory();} catch (Exception e) {}}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.treats += CurrencyTracker.offlineEarnings(CurrencyTracker.lastOnline);}
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         CurrencyTracker.earnThread = new EarnThread(this);
@@ -76,8 +83,11 @@ public class MainActivity extends AppCompatActivity {
     public void onPause()
     {
         super.onPause();
-        if (getSharedPreferences("settings", MODE_PRIVATE).getBoolean("firstRun", true)) return;
+        SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
+        if (data.getBoolean("firstRun", true)) return;
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
+        try {encoding.saveInventory(Inventory.inventory);} catch (IOException e) {}
+        data.edit().putBoolean("hasBeenSaved", true).apply();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.lastOnline = Instant.now();}
     }
 void InsertButtons()
