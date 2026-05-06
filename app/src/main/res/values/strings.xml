@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">P2 Project</string>
+    <string name="title_activity_audio_player">AudioPlayer</string>
 </resources>
