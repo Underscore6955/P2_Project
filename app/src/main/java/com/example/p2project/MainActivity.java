@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,8 @@ import java.time.*;
 
 public class MainActivity extends AppCompatActivity {
     static Boolean invStarted = false;
+    public TextView treatView;
+    public TextView earnView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,23 +36,25 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            if (!invStarted)
-            {
-                InsertButtons();
-                Inventory.inventory.add(new Animal("Bear",1000L, 1L));
-                Inventory.inventory.add(new Animal("Cat",1000L, 1L));
-                Inventory.inventory.add(new Animal("Chameleon",1000L, 1L));
-                Inventory.inventory.add(new Animal("Chinchilla",1000L, 1L));
-                Inventory.inventory.add(new Animal("Crab",1000L, 1L));
-                Inventory.inventory.add(new Animal("Donkey",1000L, 1L));
-                Inventory.inventory.add(new Animal("Fox",1000L, 1L));
-                Inventory.inventory.add(new Animal("Jellyfish",1000L, 1L));
-                Inventory.inventory.add(new Animal("Panda",1000L, 1L));
-                Inventory.UpdateInventory();
-                invStarted = true;
-            }
             return insets;
         });
+        treatView = findViewById(R.id.treat_view);
+        earnView = findViewById(R.id.earn_view);
+        if (!invStarted)
+        {
+            InsertButtons();
+            Inventory.inventory.add(new Animal("Bear",1000L, 1L));
+            Inventory.inventory.add(new Animal("Cat",1000L, 1L));
+            Inventory.inventory.add(new Animal("Chameleon",1000L, 1L));
+            Inventory.inventory.add(new Animal("Chinchilla",1000L, 1L));
+            Inventory.inventory.add(new Animal("Crab",1000L, 1L));
+            Inventory.inventory.add(new Animal("Donkey",1000L, 1L));
+            Inventory.inventory.add(new Animal("Fox",1000L, 1L));
+            Inventory.inventory.add(new Animal("Jellyfish",1000L, 1L));
+            Inventory.inventory.add(new Animal("Panda",1000L, 1L));
+            Inventory.UpdateInventory();
+            invStarted = true;
+        }
         DayNightSystem dayNightSystem = new DayNightSystem();
         dayNightSystem.background = findViewById(R.id.backgroundImg);
         dayNightSystem.Time();
@@ -58,15 +63,17 @@ public class MainActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
+        if (!invStarted) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.treats += CurrencyTracker.offlineEarnings(CurrencyTracker.lastOnline);}
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
-        CurrencyTracker.earnThread = new EarnThread();
-        CurrencyTracker.earnThread.run();
+        CurrencyTracker.earnThread = new EarnThread(this);
+        CurrencyTracker.earnThread.start();
     }
     @Override
     public void onPause()
     {
         super.onPause();
+        if (!invStarted) return;
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.lastOnline = Instant.now();}
     }

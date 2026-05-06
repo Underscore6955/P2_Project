@@ -12,18 +12,17 @@ public class CurrencyTracker
         long curEarn = 0;
         for (Inventory.ActiveSlot curSlot : Inventory.activeSlots)
         {
-            curEarn += curSlot.content.production;
+            if (curSlot.content != null) curEarn += curSlot.content.production;
         }
         for (Animal curAnimal : Inventory.inventory)
         {
-            curEarn *= Math.divideExact(curAnimal.passive, 100L) + 1L;
+            if (curAnimal != null) curEarn *= Math.divideExact(curAnimal.passive, 100L) + 1L;
         }
         return curEarn;
     }
     public static long offlineEarnings(Instant time) {
         Duration offlineTime = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            offlineTime = Duration.ZERO;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && time != null) {
             offlineTime = Duration.between(time, Instant.now());
             return offlineTime.getSeconds() * curEarn();
         }
