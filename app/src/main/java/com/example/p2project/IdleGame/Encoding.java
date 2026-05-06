@@ -63,7 +63,7 @@ public class Encoding
     Animal deCodeAnimal(String curString)
     {
         String[] curAnimal = curString.split(":");
-        try {return new Animal(curAnimal[0], Long.parseLong(curAnimal[1]), Long.parseLong(curAnimal[2]));} catch (ArrayIndexOutOfBoundsException e){}
+        try {return new Animal(curAnimal[0], Double.parseDouble(curAnimal[1]), Double.parseDouble(curAnimal[2]));} catch (ArrayIndexOutOfBoundsException e){}
         Log.d("failed", "failed to decode " + curString + " into animal");
         return null;
     }

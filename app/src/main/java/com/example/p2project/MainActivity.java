@@ -50,15 +50,15 @@ public class MainActivity extends AppCompatActivity {
         InsertButtons();
         if (data.getBoolean("firstRun", true))
         {
-            Inventory.inventory.add(new Animal("Bear",1000L, 1L));
-            Inventory.inventory.add(new Animal("Cat",1000L, 1L));
-            Inventory.inventory.add(new Animal("Chameleon",1000L, 1L));
-            Inventory.inventory.add(new Animal("Chinchilla",1000L, 1L));
-            Inventory.inventory.add(new Animal("Crab",1000L, 1L));
-            Inventory.inventory.add(new Animal("Donkey",1000L, 1L));
-            Inventory.inventory.add(new Animal("Fox",1000L, 1L));
-            Inventory.inventory.add(new Animal("Jellyfish",1000L, 1L));
-            Inventory.inventory.add(new Animal("Panda",1000L, 1L));
+            Inventory.inventory.add(new Animal("Bear",1000D, 1D));
+            Inventory.inventory.add(new Animal("Cat",1000D, 1D));
+            Inventory.inventory.add(new Animal("Chameleon",1000D, 1D));
+            Inventory.inventory.add(new Animal("Chinchilla",1000D, 1D));
+            Inventory.inventory.add(new Animal("Crab",1000D, 1D));
+            Inventory.inventory.add(new Animal("Donkey",1000D, 1D));
+            Inventory.inventory.add(new Animal("Fox",1000D, 1D));
+            Inventory.inventory.add(new Animal("Jellyfish",1000D, 1D));
+            Inventory.inventory.add(new Animal("Panda",1000D, 1D));
             Inventory.UpdateInventory();
             data.edit().putBoolean("firstRun", false).apply();
         }
@@ -72,12 +72,13 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onResume();
         SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
-        if (data.getBoolean("firstRun", true)) return;
-        if (data.getBoolean("hasBeenSaved", false)) {try {encoding.loadInventory();} catch (Exception e) {}}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.treats += CurrencyTracker.offlineEarnings(CurrencyTracker.lastOnline);}
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         CurrencyTracker.earnThread = new EarnThread(this);
         CurrencyTracker.earnThread.start();
+        if (data.getBoolean("firstRun", true)) return;
+        if (data.getBoolean("hasBeenSaved", false)) {try {encoding.loadInventory();} catch (Exception e) {}}
+        CurrencyTracker.treats = (double) (data.getFloat("treats", 0));
     }
     @Override
     public void onPause()
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         try {encoding.saveInventory(Inventory.inventory);} catch (IOException e) {}
         data.edit().putBoolean("hasBeenSaved", true).apply();
+        data.edit().putFloat("treats", CurrencyTracker.treats.floatValue()).apply();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.lastOnline = Instant.now();}
     }
 void InsertButtons()

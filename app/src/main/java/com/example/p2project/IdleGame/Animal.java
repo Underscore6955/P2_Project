@@ -3,9 +3,9 @@ package com.example.p2project.IdleGame;
 public class Animal
 {
     String name;
-    long production;
-    long passive;
-    public Animal (String name, long production, long passive)
+    Double production;
+    Double passive;
+    public Animal (String name, Double production, Double passive)
     {
         this.name = name;
         this.production = production;

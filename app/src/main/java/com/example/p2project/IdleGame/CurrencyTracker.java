@@ -4,29 +4,29 @@ import android.os.Build;
 import java.time.*;
 public class CurrencyTracker
 {
-    public static long treats = 0;
+    public static Double treats = 0D;
     public static EarnThread earnThread;
     public static Instant lastOnline;
-    public static long curEarn()
+    public static Double curEarn()
     {
-        long curEarn = 0;
+        Double curEarn = 0D;
         for (Inventory.ActiveSlot curSlot : Inventory.activeSlots)
         {
             if (curSlot.content != null) curEarn += curSlot.content.production;
         }
         for (Animal curAnimal : Inventory.inventory)
         {
-            if (curAnimal != null) curEarn *= Math.divideExact(curAnimal.passive, 100L) + 1L;
+            if (curAnimal != null) curEarn *= curAnimal.passive/100D + 1D;
         }
         return curEarn;
     }
-    public static long offlineEarnings(Instant time) {
+    public static Double offlineEarnings(Instant time) {
         Duration offlineTime = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && time != null) {
             offlineTime = Duration.between(time, Instant.now());
             return offlineTime.getSeconds() * curEarn();
         }
-        return 0;
+        return 0D;
     }
 }
 
