@@ -28,6 +28,14 @@ public class AudioService extends Service {
     public void onCreate(){
         super.onCreate();
         soundManager = new DualSoundManager(this);
+
+        soundManager.setTimerListener(new DualSoundManager.TimerListener() {
+            @Override
+            public void onTimerFinished() {
+                stopForeground(true);
+                stopSelf();
+            }
+        });
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
