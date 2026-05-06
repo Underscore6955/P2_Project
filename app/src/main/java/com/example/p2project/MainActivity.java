@@ -1,6 +1,7 @@
 package com.example.p2project;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
         });
         treatView = findViewById(R.id.treat_view);
         earnView = findViewById(R.id.earn_view);
-        if (!invStarted)
+        SharedPreferences settings = getSharedPreferences("settings", MODE_PRIVATE);
+        settings.edit().putBoolean("firstRun", true).apply();
+        if (settings.getBoolean("firstRun", true))
         {
             InsertButtons();
             Inventory.inventory.add(new Animal("Bear",1000L, 1L));
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             Inventory.inventory.add(new Animal("Jellyfish",1000L, 1L));
             Inventory.inventory.add(new Animal("Panda",1000L, 1L));
             Inventory.UpdateInventory();
-            invStarted = true;
+            settings.edit().putBoolean("firstRun", false).apply();
         }
         DayNightSystem dayNightSystem = new DayNightSystem();
         dayNightSystem.background = findViewById(R.id.backgroundImg);
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        if (!invStarted) return;
+        if (getSharedPreferences("settings", MODE_PRIVATE).getBoolean("firstRun", true)) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.treats += CurrencyTracker.offlineEarnings(CurrencyTracker.lastOnline);}
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         CurrencyTracker.earnThread = new EarnThread(this);
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     public void onPause()
     {
         super.onPause();
-        if (!invStarted) return;
+        if (getSharedPreferences("settings", MODE_PRIVATE).getBoolean("firstRun", true)) return;
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {CurrencyTracker.lastOnline = Instant.now();}
     }
