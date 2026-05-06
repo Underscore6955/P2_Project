@@ -1,12 +1,10 @@
 package com.example.p2project.IdleGame;
 
 import android.content.Context;
-import android.drm.DrmStore;
 import android.media.MediaPlayer;
 import android.content.SharedPreferences;
 import android.media.PlaybackParams;
 import android.os.Build;
-import android.provider.MediaStore;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -112,7 +110,7 @@ public class DualSoundManager {
         return favorites.contains(soundName);
     }
 
-    
+
     public void removeSound1(){
         if (player1 !=null){
             if(player1.isPlaying()){
