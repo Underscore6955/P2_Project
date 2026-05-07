@@ -1,4 +1,4 @@
-package com.example.p2project;
+package com.example.p2project.IdleGame.DayNight;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

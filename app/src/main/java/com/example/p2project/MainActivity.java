@@ -1,10 +1,8 @@
 package com.example.p2project;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.p2project.IdleGame.Animal;
 import com.example.p2project.IdleGame.DayNight.DayNightSystem;
+import com.example.p2project.IdleGame.DayNight.ScreenStateReceiver;
 import com.example.p2project.IdleGame.Inventory;
 import com.example.p2project.IdleGame.Inventory.ActiveSlot;
 import com.example.p2project.IdleGame.Inventory.InventorySlot;
