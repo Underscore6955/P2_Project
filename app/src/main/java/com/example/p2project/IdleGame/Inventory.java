@@ -14,26 +14,31 @@ public class Inventory
     public static ActiveSlot[] activeSlots = new ActiveSlot[5];
     static Integer curSelect;
     public static ArrayList<Animal> inventory = new ArrayList<Animal>();
+    public static Animal[] activeAnimals = new Animal[5];
     static void EquipAnimal(Integer inventorySelec, Integer activeSelec)
     {
         Animal curAnimal = inventory.get(inventorySelec);
         // find selection here
-        Animal prevAnimal = activeSlots[activeSelec].content;
+        Animal prevAnimal = activeAnimals[activeSelec];
 
         if (prevAnimal == null)
         { inventory.remove((int) inventorySelec); }
         else { inventory.set(inventorySelec, prevAnimal); }
-        activeSlots[activeSelec].content = curAnimal;
-        activeSlots[activeSelec].UpdateIcon();
-        UpdateInventory();
+        activeAnimals[activeSelec] = curAnimal;
+        updateInventory();
     }
-    public static void UpdateInventory()
+    public static void updateInventory()
     {
         for (int i = 0; i < inventorySlots.length; i++)
         {
             try { inventorySlots[i].content = inventory.get(i); }
             catch (Exception e) { inventorySlots[i].content = null; }
             inventorySlots[i].UpdateIcon();
+        }
+        for (int i = 0; i < activeSlots.length; i++)
+        {
+            activeSlots[i].content = activeAnimals[i];
+            activeSlots[i].UpdateIcon();
         }
     }
     public static class InventoryButton
@@ -80,13 +85,13 @@ public class Inventory
                     EquipAnimal(curSelect, id);
                     curSelect = null;
                 }
-                else if (inventory.size() < inventorySlots.length && content != null)
+                else if (inventory.size() < inventorySlots.length && activeAnimals[id] != null)
                 {
-                    inventory.add(content);
-                    content = null;
-                    UpdateIcon();
-                    UpdateInventory();
+                    inventory.add(activeAnimals[id]);
+                    activeAnimals[id] = null;
+                    updateInventory();
                 }
+                CurrencyTracker.earnThread.updateText();
                 }
             }
             );

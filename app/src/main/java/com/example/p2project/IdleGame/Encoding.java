@@ -4,19 +4,17 @@ import static android.content.Context.MODE_PRIVATE;
 import android.os.Build;
 import android.util.Log;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.p2project.MainActivity;
+import com.example.p2project.HasTreats;
+import com.example.p2project.InventoryScreen;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 public class Encoding
 {
-    MainActivity main;
-    public Encoding(MainActivity main)
+    HasTreats main;
+    public Encoding(HasTreats main)
     {
         this.main = main;
     }
@@ -54,25 +52,24 @@ public class Encoding
         ArrayList<Animal> animals = new ArrayList<Animal>();
         for (String curAnimal : deEncodeString(curString, -1).split("/"))
         {
-            Log.d("decoding", "just decoded " + curAnimal);
             try{animals.add(deCodeAnimal(curAnimal));} catch (NullPointerException e) {}
         }
-        for (Animal animal : animals){try{Log.d("added", "added "+ animal.name + " to list" );} catch (NullPointerException e) {Log.d("null", "added null to list");}}
         return animals;
     }
     Animal deCodeAnimal(String curString)
     {
         String[] curAnimal = curString.split(":");
         try {return new Animal(curAnimal[0], Double.parseDouble(curAnimal[1]), Double.parseDouble(curAnimal[2]));} catch (ArrayIndexOutOfBoundsException e){}
-        Log.d("failed", "failed to decode " + curString + " into animal");
         return null;
     }
     public void saveInventory(ArrayList<Animal> curList) throws IOException
     {
         byte[] curBytes = encodeAnimalList(curList).getBytes();
-        Log.d("save", "saved " + encodeAnimalList(curList));
         FileOutputStream out = main.getApplicationContext().openFileOutput("inventory.txt", MODE_PRIVATE);
         out.write(curBytes);
+        Log.d("treats", "You have " + CurrencyTracker.treats + " treats");
+        main.getSharedPreferences("data",MODE_PRIVATE).edit().putInt("treats", CurrencyTracker.treats.intValue()).apply();
+        Log.d("treats", "It saved " + main.getSharedPreferences("data",MODE_PRIVATE).getInt("treats", 0) + " treats");
         saveActive();
     }
     public void loadInventory() throws IOException
@@ -81,16 +78,16 @@ public class Encoding
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
         {
-            Log.d("loading", "decoding...");
             Inventory.inventory = decodeAnimalList(new String(in.readAllBytes()));
+            Log.d("treats", "It loaded " + main.getSharedPreferences("data",MODE_PRIVATE).getInt("treats", 0) + " treats");
+            CurrencyTracker.treats = (double) main.getSharedPreferences("data",MODE_PRIVATE).getInt("treats", 0);
             loadActive();
-            Inventory.UpdateInventory();
         }
     }
     void saveActive() throws IOException
     {
         ArrayList<Animal> curList = new ArrayList<Animal>();
-        for (Inventory.ActiveSlot curSlot : Inventory.activeSlots) {curList.add(curSlot.content);}
+        Collections.addAll(curList, Inventory.activeAnimals);
         FileOutputStream out = main.getApplicationContext().openFileOutput("active.txt", MODE_PRIVATE);
         out.write(encodeAnimalList(curList).getBytes());
     }
@@ -100,10 +97,9 @@ public class Encoding
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
         {
             String[] animals = new String(in.readAllBytes()).split("/");
-            for (int i = 0; i < Inventory.activeSlots.length; i++)
+            for (int i = 0; i < Inventory.activeAnimals.length; i++)
             {
-                Inventory.activeSlots[i].content = deCodeAnimal(deEncodeString(animals[i],-1));
-                Inventory.activeSlots[i].UpdateIcon();
+                Inventory.activeAnimals[i] = deCodeAnimal(deEncodeString(animals[i],-1));
             }
         }
     }

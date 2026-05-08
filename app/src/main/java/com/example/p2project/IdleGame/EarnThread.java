@@ -1,11 +1,14 @@
 package com.example.p2project.IdleGame;
 
-import com.example.p2project.MainActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.p2project.HasTreats;
+import com.example.p2project.InventoryScreen;
 
 public class EarnThread extends Thread{
     Boolean earning = true;
-    MainActivity main;
-    public EarnThread(MainActivity main)
+    public HasTreats main;
+    public EarnThread(HasTreats main)
     {
         this.main = main;
     }
@@ -13,18 +16,22 @@ public class EarnThread extends Thread{
     {
         while (earning)
         {
-            try {Thread.sleep(1000);} catch (InterruptedException e) {e.printStackTrace();}
+            try {Thread.sleep(1000);} catch (InterruptedException e) {}
             CurrencyTracker.treats += CurrencyTracker.curEarn();
-            main.runOnUiThread(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    main.treatView.setText(String.valueOf(CurrencyTracker.treats.intValue()));
-                    main.earnView.setText(String.valueOf(CurrencyTracker.curEarn().intValue()));
-                }
-            });
+            updateText();
         }
+    }
+    public void updateText()
+    {
+        main.runOnUiThread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                main.treatView.setText(String.valueOf(CurrencyTracker.treats.intValue()));
+                main.earnView.setText(String.valueOf(CurrencyTracker.curEarn().intValue()));
+            }
+        });
     }
     public void stopEarn()
     {

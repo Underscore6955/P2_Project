@@ -2,12 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/inventoryActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:ignore="HardcodedText"
-    tools:context=".MainActivity">
+    tools:context=".InventoryScreen">
 
     <LinearLayout
         android:adjustViewBounds="true"
@@ -75,6 +75,7 @@
             android:background="@drawable/inv_background"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/earn_treat_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,10 +102,11 @@
         android:columnCount="6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/earn_treat_view"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        android:useDefaultMargins="true">
+        app:layout_constraintVertical_bias="0.1"
+        android:useDefaultMargins="true"
+        tools:ignore="NotSibling">
 
         <ImageButton
             android:id="@+id/inventory0"
