@@ -38,13 +38,17 @@
             android:id="@+id/active0"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_marginEnd="40dp"/>
         <ImageButton
             android:id="@+id/active1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/inv_background"/>
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/activeBottom"
@@ -60,19 +64,25 @@
             android:id="@+id/active2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_marginEnd="30dp"/>
         <ImageButton
             android:id="@+id/active3"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_marginEnd="30dp"/>
         <ImageButton
             android:id="@+id/active4"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:background="@drawable/inv_background"/>
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/earn_treat_view"
@@ -112,7 +122,9 @@
             android:id="@+id/inventory0"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -121,7 +133,9 @@
             android:id="@+id/inventory1"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -130,7 +144,9 @@
             android:id="@+id/inventory2"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -139,7 +155,9 @@
             android:id="@+id/inventory3"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -148,7 +166,9 @@
             android:id="@+id/inventory4"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -157,7 +177,9 @@
             android:id="@+id/inventory5"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -166,7 +188,9 @@
             android:id="@+id/inventory6"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -175,7 +199,9 @@
             android:id="@+id/inventory7"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -184,7 +210,9 @@
             android:id="@+id/inventory8"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -193,7 +221,9 @@
             android:id="@+id/inventory9"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -202,7 +232,9 @@
             android:id="@+id/inventory10"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>
@@ -211,7 +243,9 @@
             android:id="@+id/inventory11"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/inv_background"
+            android:src="@drawable/inv_background"
+            android:background="@null"
+            android:scaleType="centerCrop"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
             android:layout_rowWeight="1"/>

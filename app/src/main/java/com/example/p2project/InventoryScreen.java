@@ -32,7 +32,7 @@ public class InventoryScreen extends HasTreats {
         treatView = findViewById(R.id.treat_view);
         earnView = findViewById(R.id.earn_view);
         insertButtons();
-        Inventory.updateInventory();
+        Inventory.updateInventory("inv_background");
     }
     @Override
     public void onResume()

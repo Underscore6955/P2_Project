@@ -43,13 +43,13 @@ public class HasTreats extends AppCompatActivity
         {
             Inventory.inventorySlots[i] = new Inventory.InventorySlot(i, NewButton("inventory", i));
         }
-        insertActive();
+        insertActive("inv_background");
     }
-    protected  void insertActive()
+    protected  void insertActive(String defaultIcon)
     {
         for (int i = 0; i < 5; i++)
         {
-            Inventory.activeSlots[i] = new Inventory.ActiveSlot(i, NewButton("active", i));
+            Inventory.activeSlots[i] = new Inventory.ActiveSlot(i, NewButton("active", i), defaultIcon);
         }
     }
     ImageButton NewButton(String type, Integer id)

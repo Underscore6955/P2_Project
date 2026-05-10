@@ -39,8 +39,6 @@ public class MainScreen extends HasTreats
             return insets;
         });
         SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
-        //data.edit().putBoolean("firstRun", true).apply();
-        //data.edit().putBoolean("hasBeenSaved", false).apply();
         if (data.getBoolean("firstRun", true))
         {
             Inventory.inventory.add(new Animal("Bear",1000D, 1D));
@@ -58,7 +56,9 @@ public class MainScreen extends HasTreats
         earnView = findViewById(R.id.earn_view_main);
         loadIdle();
         startIdle();
-        insertActive();
+        insertActive("empty");
+        Inventory.updateActive("empty");
+        for (Inventory.ActiveSlot curSlot : Inventory.activeSlots) {curSlot.startAnim();}
         ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this, dayNightSystem);
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }
@@ -73,7 +73,7 @@ public class MainScreen extends HasTreats
         if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
         CurrencyTracker.earnThread = new EarnThread(this);
         CurrencyTracker.earnThread.start();
-        tellUserIdleRewards(getIdleReward());
+        if (getSharedPreferences("data", MODE_PRIVATE).getBoolean("hasBeenSaved", false)) tellUserIdleRewards(getIdleReward());
     }
     void loadIdle()
     {

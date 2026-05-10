@@ -3,6 +3,8 @@ package com.example.p2project.IdleGame;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.p2project.IdleGame.DayNight.DayNightSystem;
 import com.example.p2project.R;
-
+import com.bumptech.glide.Glide;
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -31,28 +35,34 @@ public class Inventory
     static void EquipAnimal(Integer inventorySelec, Integer activeSelec)
     {
         Animal curAnimal = inventory.get(inventorySelec);
-        // find selection here
         Animal prevAnimal = activeAnimals[activeSelec];
 
         if (prevAnimal == null)
         { inventory.remove((int) inventorySelec); }
         else { inventory.set(inventorySelec, prevAnimal); }
         activeAnimals[activeSelec] = curAnimal;
-        updateInventory();
+        updateInventory(defaultIcon);
     }
-    public static void updateInventory()
+    public static void updateInventory(String defaultIcon)
     {
-        if (inventorySlots[0] == null) return;
-        for (int i = 0; i < inventorySlots.length; i++)
-        {
-            try { inventorySlots[i].content = inventory.get(i); }
-            catch (Exception e) { inventorySlots[i].content = null; }
-            inventorySlots[i].UpdateIcon();
+        if (inventorySlots[0] != null) {
+            for (int i = 0; i < inventorySlots.length; i++) {
+                try {
+                    inventorySlots[i].content = inventory.get(i);
+                } catch (Exception e) {
+                    inventorySlots[i].content = null;
+                }
+                inventorySlots[i].UpdateIcon(defaultIcon);
+            }
         }
+        updateActive(defaultIcon);
+    }
+    public static void updateActive(String defaultIcon)
+    {
         for (int i = 0; i < activeSlots.length; i++)
         {
             activeSlots[i].content = activeAnimals[i];
-            activeSlots[i].UpdateIcon();
+            activeSlots[i].UpdateIcon(defaultIcon);
         }
     }
     public static class InventoryButton
@@ -60,9 +70,9 @@ public class Inventory
         public Animal content;
         Integer id;
         ImageButton button;
-        public void UpdateIcon()
+        public void UpdateIcon(String defaultIcon)
         {
-            button.setBackground(button.getContext().getResources().getDrawable(button.getContext().getResources().getIdentifier((content != null) ? content.name.toLowerCase() : defaultIcon, "drawable", button.getContext().getPackageName())));
+            button.setImageResource(button.getContext().getResources().getIdentifier((content != null) ? content.name.toLowerCase() : defaultIcon, "drawable", button.getContext().getPackageName()));
         }
         protected void showMenu()
         {
@@ -120,10 +130,12 @@ public class Inventory
     }
     public static class ActiveSlot extends InventoryButton
     {
-        public ActiveSlot(Integer curId, ImageButton curButton)
+        String defaultIcon;
+        public ActiveSlot(Integer curId, ImageButton curButton, String curDefaultIcon)
         {
             button = curButton;
             id = curId;
+            this.defaultIcon = curDefaultIcon;
             curButton.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
@@ -148,7 +160,7 @@ public class Inventory
                                 curDialog.dismiss();
                                 inventory.add(activeAnimals[id]);
                                 activeAnimals[id] = null;
-                                updateInventory();
+                                updateInventory(defaultIcon);
                             }
                         }
                     }
@@ -158,6 +170,15 @@ public class Inventory
                 }
             }
             );
+        }
+        public void startAnim()
+        {
+            Log.d("anim", "started anim");
+            Drawable gif = null;
+            try {gif = button.getContext().getResources().getDrawable(button.getContext().getResources().getIdentifier(content.name.toLowerCase() +"_"+ ((DayNightSystem.day) ? "idle" : "sleep"), "drawable", button.getContext().getPackageName()));}
+            catch (android.content.res.Resources.NotFoundException | NullPointerException e){return;}
+            if (content != null) Log.d("gif",(gif == null) + " " + content.name);
+            if (gif != null) Glide.with(CurrencyTracker.earnThread.main).load(gif).override(button.getWidth(),button.getHeight()).into(button);
         }
     }
 }

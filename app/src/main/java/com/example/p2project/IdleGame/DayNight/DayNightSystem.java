@@ -18,11 +18,15 @@ public class DayNightSystem extends Thread{
             if (time.isBefore(bedTime) && time.isAfter(awakeTime)) {
                 day = true;
                 Log.d("day", "it's day");
-                if (background != null) background.setImageResource(R.drawable.day_background);
+                if (background != null) {
+                    background.post(() -> background.setImageResource(R.drawable.day_background));
+                }
             } else {
                 day = false;
                 Log.d("night", "it's night");
-                if (background != null) background.setImageResource(R.drawable.night_background);
+                if (background != null) {
+                    background.post(() -> background.setImageResource(R.drawable.night_background));
+                }
             }
             try {Thread.sleep(30000);} catch (InterruptedException e) {}
         }
