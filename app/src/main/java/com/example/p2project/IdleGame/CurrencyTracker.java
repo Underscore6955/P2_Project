@@ -27,12 +27,12 @@ public class CurrencyTracker
         if (time != null) {
             offlineTime = Duration.between(time, Instant.now());
             toReturn[0] = (double) offlineTime.getSeconds();
-            toReturn[1] = activeBetween(time, 9, 21);
+            toReturn[1] = activeBetween(time, 9, 21, 0);
             toReturn[2] = toReturn[1] * curEarn();
         }
         return toReturn;
     }
-    public static Double activeBetween(Instant lastOnline, int startHour, int endHour)
+    public static Double activeBetween(Instant lastOnline, int startHour, int endHour, int endMinute)
     {
         ZoneId zone = ZoneId.systemDefault();
         ZonedDateTime start = lastOnline.atZone(zone);
@@ -43,7 +43,7 @@ public class CurrencyTracker
 
         while (!currentDay.isAfter(end)) {
             ZonedDateTime windowStart = currentDay.withHour(startHour).withMinute(0).withSecond(0);
-            ZonedDateTime windowEnd = currentDay.withHour(endHour).withMinute(0).withSecond(0);
+            ZonedDateTime windowEnd = currentDay.withHour(endHour).withMinute(endMinute).withSecond(0);
 
             ZonedDateTime overlapStart = start.isAfter(windowStart) ? start : windowStart;
             ZonedDateTime overlapEnd = end.isBefore(windowEnd) ? end : windowEnd;

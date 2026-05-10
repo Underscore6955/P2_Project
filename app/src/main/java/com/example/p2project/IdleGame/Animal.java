@@ -16,7 +16,7 @@ public class Animal
     public void giveXp(Double xp)
     {
         this.xp += xp;
-        if (this.xp >= 100D)
+        while (this.xp >= 100D)
         {
             this.xp -= 100D;
             this.level += 1;

@@ -104,7 +104,7 @@ public class MainScreen extends HasTreats
     }
     String giveXp(Instant time)
     {
-        Double earnedXp = CurrencyTracker.activeBetween(time, 21, 9) / 40D;
+        Double earnedXp = (CurrencyTracker.activeBetween(time, 21, 23,59) + CurrencyTracker.activeBetween(time, 0, 9,0)) / 40D;
         Log.d("xp", "Your animals earned " + earnedXp + " xp");
         for (Animal curAnimal : Inventory.activeAnimals)
         {
