@@ -5,6 +5,14 @@
     android:id="@+id/mainScreenActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/background_img_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        android:background="@drawable/day_background"
+        android:scaleType="centerCrop"
+        android:src="@drawable/day_background" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,13 +36,125 @@
     </LinearLayout>
     <Button
         android:id="@+id/changeToInventory"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="315dp"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.33"
+        app:layout_constraintHeight_percent="0.08"
+        android:background="@drawable/sharp_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <Button
+        android:id="@+id/open_sounds_button"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.33"
+        app:layout_constraintHeight_percent="0.08"
+        android:background="@drawable/sharp_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <Button
+        android:id="@+id/open_stats_button"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.33"
+        app:layout_constraintHeight_percent="0.08"
+        android:background="@drawable/sharp_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:color= "@color/black"
+        app:layout_constraintWidth_percent="0.25"
         />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/changeToInventory"
+        app:layout_constraintGuide_percent="0.3"
+        android:orientation="horizontal"/>
+        >
+        <ImageButton
+            android:id="@+id/active0"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.22"
+            app:layout_constraintVertical_bias="0.25"
+            android:background="@drawable/evilsauce"
+            />
+        <ImageButton
+            android:id="@+id/active1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintVertical_bias="0.3"
+            android:background="@drawable/evilsauce"
+            />
+        <ImageButton
+            android:id="@+id/active2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.7"
+            android:background="@drawable/evilsauce"
+            />
+        <ImageButton
+            android:id="@+id/active3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintVertical_bias="0.8"
+            android:background="@drawable/evilsauce"
+            />
+        <ImageButton
+            android:id="@+id/active4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintWidth_percent="0.25"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.75"
+            android:background="@drawable/evilsauce"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

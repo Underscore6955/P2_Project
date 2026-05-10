@@ -42,6 +42,7 @@ public class Inventory
     }
     public static void updateInventory()
     {
+        if (inventorySlots[0] == null) return;
         for (int i = 0; i < inventorySlots.length; i++)
         {
             try { inventorySlots[i].content = inventory.get(i); }

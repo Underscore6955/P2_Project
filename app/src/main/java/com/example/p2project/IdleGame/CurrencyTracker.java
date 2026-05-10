@@ -2,6 +2,8 @@ package com.example.p2project.IdleGame;
 import android.os.Build;
 import android.util.Log;
 
+import com.example.p2project.IdleGame.DayNight.DayNightSystem;
+
 import java.time.*;
 public class CurrencyTracker
 {
@@ -10,6 +12,7 @@ public class CurrencyTracker
     public static Instant lastOnline;
     public static Double curEarn()
     {
+        if (!DayNightSystem.day) return 0D;
         Double curEarn = 0D;
         for (Animal curAnimal : Inventory.activeAnimals)
         {

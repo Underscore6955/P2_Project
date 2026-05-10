@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.p2project.HasTreats;
 import com.example.p2project.IdleGame.Animal;
 import com.example.p2project.IdleGame.CurrencyTracker;
+import com.example.p2project.IdleGame.DayNight.DayNightSystem;
 import com.example.p2project.IdleGame.EarnThread;
 import com.example.p2project.IdleGame.Encoding;
 import com.example.p2project.IdleGame.Inventory;
@@ -57,14 +58,15 @@ public class MainScreen extends HasTreats
         earnView = findViewById(R.id.earn_view_main);
         loadIdle();
         startIdle();
-        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this);
+        insertActive();
+        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this, dayNightSystem);
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }
     @Override
-    public void onDestroy()
+    public void onResume()
     {
-        super.onDestroy();
-        stopIdle();
+        super.onResume();
+        dayNightSystem.background = findViewById(R.id.background_img_main);
     }
     void startIdle()
     {
@@ -72,11 +74,6 @@ public class MainScreen extends HasTreats
         CurrencyTracker.earnThread = new EarnThread(this);
         CurrencyTracker.earnThread.start();
         tellUserIdleRewards(getIdleReward());
-    }
-    void stopIdle()
-    {
-        if (CurrencyTracker.earnThread != null) {CurrencyTracker.earnThread.stopEarn();}
-        CurrencyTracker.lastOnline = Instant.now();
     }
     void loadIdle()
     {

@@ -31,31 +31,13 @@ public class InventoryScreen extends HasTreats {
         });
         treatView = findViewById(R.id.treat_view);
         earnView = findViewById(R.id.earn_view);
-        InsertButtons();
-        DayNightSystem dayNightSystem = new DayNightSystem();
-        dayNightSystem.background = findViewById(R.id.backgroundImg);
-        dayNightSystem.Time();
+        insertButtons();
         Inventory.updateInventory();
     }
     @Override
     public void onResume()
     {
         super.onResume();
-        CurrencyTracker.earnThread.main = this;
+        dayNightSystem.background = findViewById(R.id.backgroundImg);
     }
-void InsertButtons()
-{
-    for (int i = 0; i <= 11; i++)
-    {
-        Inventory.inventorySlots[i] = new InventorySlot(i, NewButton("inventory", i));
-    }
-    for (int i = 0; i < 5; i++)
-    {
-        Inventory.activeSlots[i] = new ActiveSlot(i, NewButton("active", i));
-    }
-}
-ImageButton NewButton(String type, Integer id)
-{
-    return findViewById(getResources().getIdentifier((type + id), "id", getPackageName()));
-}
 }
