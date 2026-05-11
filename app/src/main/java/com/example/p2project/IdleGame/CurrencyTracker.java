@@ -12,7 +12,6 @@ public class CurrencyTracker
     public static Instant lastOnline;
     public static Double curEarn()
     {
-        if (!DayNightSystem.day) return 0D;
         Double curEarn = 0D;
         for (Animal curAnimal : Inventory.activeAnimals)
         {

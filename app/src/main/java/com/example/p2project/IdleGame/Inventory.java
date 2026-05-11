@@ -84,7 +84,7 @@ public class Inventory
             ImageView image = curDialog.findViewById(R.id.animal_image);
             ProgressBar xpBar = curDialog.findViewById(R.id.xp_bar);
             TextView xpText = curDialog.findViewById(R.id.xp_text);
-            name.setText(content.name);
+            name.setText(content.name.replace('_',' '));
             earnText.setText("Earns " + content.production + " treats per second when active\nGives " + content.passive.intValue() + "% passive production");
             image.setImageResource(button.getContext().getResources().getIdentifier(content.name.toLowerCase(), "drawable", button.getContext().getPackageName()));
             xpBar.setProgress((int) (content.xp / 10));

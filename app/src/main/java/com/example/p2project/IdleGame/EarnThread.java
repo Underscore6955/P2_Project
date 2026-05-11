@@ -3,6 +3,7 @@ package com.example.p2project.IdleGame;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.p2project.HasTreats;
+import com.example.p2project.IdleGame.DayNight.DayNightSystem;
 import com.example.p2project.InventoryScreen;
 
 public class EarnThread extends Thread{
@@ -17,7 +18,7 @@ public class EarnThread extends Thread{
         while (earning)
         {
             try {Thread.sleep(1000);} catch (InterruptedException e) {}
-            CurrencyTracker.treats += CurrencyTracker.curEarn();
+            if (DayNightSystem.day) CurrencyTracker.treats += CurrencyTracker.curEarn();
             updateText();
         }
     }

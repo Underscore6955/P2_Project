@@ -39,9 +39,11 @@ public class MainScreen extends HasTreats
             return insets;
         });
         SharedPreferences data = getSharedPreferences("data", MODE_PRIVATE);
+        //data.edit().putBoolean("hasBeenSaved", false).apply();
+        //data.edit().putBoolean("firstRun", true).apply();
         if (data.getBoolean("firstRun", true))
         {
-            Inventory.inventory.add(new Animal("Bear",1000D, 1D));
+            Inventory.inventory.add(new Animal("Polar_Bear",1000D, 1D));
             Inventory.inventory.add(new Animal("Cat",1000D, 1D));
             Inventory.inventory.add(new Animal("Chameleon",1000D, 1D));
             Inventory.inventory.add(new Animal("Chinchilla",1000D, 1D));
