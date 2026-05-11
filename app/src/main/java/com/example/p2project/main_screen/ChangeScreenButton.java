@@ -30,7 +30,6 @@ public class ChangeScreenButton
     public void clicked()
     {
         Intent intent = new Intent(thisScreen, changeScreen);
-        Inventory.curSelect = null;
         thisScreen.startActivity(intent);
     }
 }

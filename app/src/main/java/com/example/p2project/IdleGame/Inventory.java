@@ -29,7 +29,6 @@ public class Inventory
     static String defaultIcon = "inv_background";
     public static InventorySlot[] inventorySlots = new InventorySlot[12];
     public static ActiveSlot[] activeSlots = new ActiveSlot[5];
-    public static Integer curSelect;
     public static ArrayList<Animal> inventory = new ArrayList<Animal>();
     public static Animal[] activeAnimals = new Animal[5];
     static void EquipAnimal(Integer inventorySelec, Integer activeSelec)
@@ -107,7 +106,6 @@ public class Inventory
         {
             button = curButton;
             id = curId;
-            curSelect = null;
             curButton.setOnClickListener(new View.OnClickListener()
                 {
                 public void onClick(View v)
@@ -119,7 +117,8 @@ public class Inventory
                             public void onClick(View v)
                             {
                                 curDialog.dismiss();
-                                curSelect = id;
+                                for (int i = 0; i < activeAnimals.length; i++) {if (activeAnimals[i] == null) {activeAnimals[i] = content;inventory.remove(content); break;}}
+                                updateInventory(defaultIcon);
                             }
                         }
                         );
@@ -139,13 +138,7 @@ public class Inventory
             curButton.setOnClickListener(new View.OnClickListener()
             {
                 public void onClick(View v)
-                {
-                if (curSelect != null)
-                {
-                    EquipAnimal(curSelect, id);
-                    curSelect = null;
-                }
-                else if (activeAnimals[id] != null)
+                {if (activeAnimals[id] != null)
                 {
                     showMenu();
                     TextView equipText = curDialog.findViewById(R.id.equip_text);

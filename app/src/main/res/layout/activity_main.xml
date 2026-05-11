@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:ignore="HardcodedText"
+    android:background="@color/black"
     tools:context=".InventoryScreen">
         <ImageView
             android:id="@+id/backgroundImg"
