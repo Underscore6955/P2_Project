@@ -139,11 +139,12 @@ public class DualSoundManager {
 
     public void removeSound2() {
         if (player2 != null) {
-            if (player2.isPlaying()) ;
-            player2.stop();
+            if (player2.isPlaying()) {
+                player2.stop();
+            }
+            player2.release();
+            player2 = null;
         }
-        player2.release();
-        player2 = null;
     }
 
     public void releaseAll() {
@@ -151,6 +152,11 @@ public class DualSoundManager {
         removeSound2();
     }
 
+    public boolean isAnyPlaying() {
+        boolean p1Playing = player1 !=null && player1.isPlaying();
+        boolean p2Playing = player2 !=null && player2.isPlaying();
+        return p1Playing || p2Playing;
+    }
     public void startSleepTimer(int minutes) {
         cancelSleepTimer();
         long durationInMillis = minutes * 60 * 1000L;

@@ -27,13 +27,15 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_marginTop="32dp"
+        android:clickable="true"
+        android:focusable="true"
         android:background="#FFFFFF"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/sound2_image"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_text"
-        tools:src="@drawable/heavy_rain" />
+        tools:src="@drawable/heavy_rain24px" />
 
     <TextView
         android:id="@+id/sound1_text"
@@ -52,22 +54,28 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/uchecked_favorite_24px"
         app:layout_constraintEnd_toEndOf="@+id/sound1_text"
         app:layout_constraintStart_toStartOf="@+id/sound1_text"
         app:layout_constraintTop_toBottomOf="@+id/sound1_text"
-        app:tint="#8B0000" /> <ImageView
-    android:id="@+id/sound2_image"
-    android:layout_width="110dp"
-    android:layout_height="110dp"
-    android:background="#FFFFFF"
-    android:scaleType="fitCenter"
-    android:padding="16dp"
-    android:src="@drawable/add_box_24px"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.5"
-    app:layout_constraintStart_toEndOf="@+id/sound1_image"
-    app:layout_constraintTop_toTopOf="@+id/sound1_image" />
+        app:tint="#8B0000" />
+
+    <ImageView
+        android:id="@+id/sound2_image"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="#FFFFFF"
+        android:scaleType="fitCenter"
+        android:padding="16dp"
+        android:src="@drawable/add_box_24px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sound1_image"
+        app:layout_constraintTop_toTopOf="@+id/sound1_image" />
 
     <TextView
         android:id="@+id/sound2_text"
@@ -86,6 +94,8 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/uchecked_favorite_24px"
         app:layout_constraintEnd_toEndOf="@+id/sound2_text"
         app:layout_constraintStart_toStartOf="@+id/sound2_text"
@@ -152,26 +162,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_pitch" />
 
-    <!-- Remove line 161 after code is finished!!!! -->
     <ImageView
-        android:id="@+id/btn_play"
+        android:id="@+id/btn_play_pause"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
-        android:src="@drawable/pause_circle_24px"
-        android:visibility="invisible"
+        android:src="@drawable/play_circle_24px"
+        android:clickable="true"
+        android:focusable="true"
         app:tint="#D3D3D3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekbar_pitch" />
-    <!-- Remove line 161 after code is finished!!!! -->
 
     <ImageView
         android:id="@+id/btn_pause"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="48dp"
-        android:src="@drawable/play_circle_24px"
+        android:src="@drawable/pause_circle_24px"
+        android:visibility="invisible"
         app:tint="#D3D3D3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
