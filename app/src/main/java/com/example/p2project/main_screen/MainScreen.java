@@ -1,5 +1,7 @@
 package com.example.p2project.main_screen;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import com.example.p2project.HasTreats;
 import com.example.p2project.IdleGame.Animal;
 import com.example.p2project.IdleGame.CurrencyTracker;
 import com.example.p2project.IdleGame.DayNight.DayNightSystem;
+import com.example.p2project.IdleGame.DayNight.ScreenStateReceiver;
 import com.example.p2project.IdleGame.EarnThread;
 import com.example.p2project.IdleGame.Encoding;
 import com.example.p2project.IdleGame.Inventory;
@@ -27,6 +30,7 @@ import java.time.Instant;
 
 public class MainScreen extends HasTreats
 {
+    static Boolean hasBeenStarted = false;
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -52,15 +56,23 @@ public class MainScreen extends HasTreats
             Inventory.inventory.add(new Animal("Fox",1000D, 1D));
             Inventory.inventory.add(new Animal("Jellyfish",1000D, 1D));
             Inventory.inventory.add(new Animal("Panda",1000D, 1D));
+            data.edit().putString("endPeriod", Instant.now().plusSeconds(7*24*3600).toString()).apply();
             data.edit().putBoolean("firstRun", false).apply();
         }
         treatView = findViewById(R.id.treat_view_main);
         earnView = findViewById(R.id.earn_view_main);
-        loadIdle();
-        startIdle();
+        if (!hasBeenStarted)
+        {
+            IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+            intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+            ScreenStateReceiver mReceiver = new ScreenStateReceiver();
+            registerReceiver(mReceiver, intentFilter);
+            loadIdle();
+            startIdle();
+            hasBeenStarted = true;
+        }
         insertActive("empty");
         Inventory.updateActive("empty");
-        for (Inventory.ActiveSlot curSlot : Inventory.activeSlots) {curSlot.startAnim();}
         ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this, dayNightSystem);
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }
@@ -68,7 +80,9 @@ public class MainScreen extends HasTreats
     public void onResume()
     {
         super.onResume();
+        for (Inventory.ActiveSlot curSlot : Inventory.activeSlots) {curSlot.startAnim();}
         dayNightSystem.background = findViewById(R.id.background_img_main);
+        if (Instant.now().isAfter(Instant.parse(getSharedPreferences("data", MODE_PRIVATE).getString("endPeriod", "null")))) endPeriod();
     }
     void startIdle()
     {
@@ -121,5 +135,11 @@ public class MainScreen extends HasTreats
             try {Thread.sleep(5000);} catch (InterruptedException e) {}
             Snackbar.make(findViewById(R.id.mainScreenActivity), ("Your animals earned " + message[2] + " xp."), Snackbar.LENGTH_LONG).show();
         }).start();
+    }
+    void endPeriod()
+    {
+        Double averageSleep = ScreenStateReceiver.screenOffTimeTotal/3600/7;
+        Log.d("totalsleep","During the week, you slept for " + ScreenStateReceiver.screenOffTimeTotal/3600 + " hours, thats " + averageSleep + " hours per night on average");
+
     }
 }

@@ -11,16 +11,6 @@ public class EggRoll {
     Random Randomise = new Random();
     int randomHolder;
 
-
-    protected void onCreate(){
-        lowTierTable.add(new Animal("Panda",1000f));
-        lowTierTable.add(new Animal("dragon",1000f));
-        midTierTable.add(new Animal("Panda",1000f));
-        midTierTable.add(new Animal("dragon",1000f));
-        highTierTable.add(new Animal("Panda",1000f));
-        highTierTable.add(new Animal("dragon",1000f));
-    }
-
     public Animal RollLowTier(){
 
 
