@@ -10,6 +10,8 @@ import com.example.p2project.HasTreats;
 import com.example.p2project.IdleGame.CurrencyTracker;
 import com.example.p2project.IdleGame.DayNight.DayNightSystem;
 import com.example.p2project.IdleGame.EarnThread;
+import com.example.p2project.IdleGame.Inventory;
+import com.example.p2project.InventoryScreen;
 
 
 public class ChangeScreenButton
@@ -28,6 +30,7 @@ public class ChangeScreenButton
     public void clicked()
     {
         Intent intent = new Intent(thisScreen, changeScreen);
+        Inventory.curSelect = null;
         thisScreen.startActivity(intent);
     }
 }

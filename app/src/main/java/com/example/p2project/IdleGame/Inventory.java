@@ -29,7 +29,7 @@ public class Inventory
     static String defaultIcon = "inv_background";
     public static InventorySlot[] inventorySlots = new InventorySlot[12];
     public static ActiveSlot[] activeSlots = new ActiveSlot[5];
-    static Integer curSelect;
+    public static Integer curSelect;
     public static ArrayList<Animal> inventory = new ArrayList<Animal>();
     public static Animal[] activeAnimals = new Animal[5];
     static void EquipAnimal(Integer inventorySelec, Integer activeSelec)
