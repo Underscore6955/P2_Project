@@ -2,7 +2,7 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">
+      <SelectionState runConfigName="Zzleep">
         <option name="selectionMode" value="DROPDOWN" />
         <DropdownSelection timestamp="2026-05-07T11:25:21.404480900Z">
           <Target type="DEFAULT_BOOT">

@@ -23,7 +23,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Inventory
+public class    Inventory
 {
     static Dialog curDialog;
     static String defaultIcon = "inv_background";
