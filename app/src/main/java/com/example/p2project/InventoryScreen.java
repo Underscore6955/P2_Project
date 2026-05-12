@@ -45,6 +45,12 @@ public class InventoryScreen extends HasTreats {
     public void onResume()
     {
         super.onResume();
+    }
+    @Override
+    protected void setBackground()
+    {
+        dayNightSystem.dayBackground = R.drawable.inventory_day;
+        dayNightSystem.nightBackground = R.drawable.inventory_night;
         dayNightSystem.background = findViewById(R.id.backgroundImg);
     }
 }

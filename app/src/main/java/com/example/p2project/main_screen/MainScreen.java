@@ -84,8 +84,14 @@ public class MainScreen extends HasTreats
     {
         super.onResume();
         for (Inventory.ActiveSlot curSlot : Inventory.activeSlots) {curSlot.startAnim();}
-        dayNightSystem.background = findViewById(R.id.background_img_main);
         if (Instant.now().isAfter(Instant.parse(getSharedPreferences("data", MODE_PRIVATE).getString("endPeriod", "null")))) endPeriod();
+    }
+    @Override
+    protected void setBackground()
+    {
+        dayNightSystem.dayBackground = R.drawable.day_background;
+        dayNightSystem.nightBackground = R.drawable.night_background;
+        dayNightSystem.background = findViewById(R.id.background_img_main);
     }
     void startIdle()
     {

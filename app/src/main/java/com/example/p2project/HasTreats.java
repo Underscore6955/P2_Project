@@ -35,6 +35,7 @@ public class HasTreats extends AppCompatActivity
         super.onResume();
         CurrencyTracker.earnThread.main = this;
         dayNightSystem = new DayNightSystem();
+        setBackground();
         dayNightSystem.start();
     }
     protected void insertButtons()
@@ -56,4 +57,5 @@ public class HasTreats extends AppCompatActivity
     {
         return findViewById(getResources().getIdentifier((type + id), "id", getPackageName()));
     }
+    protected void setBackground() {}
 }
