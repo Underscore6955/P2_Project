@@ -107,16 +107,16 @@ public class DualSoundManager {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             try {
-                // Fetch existing parameters rather than creating blank ones
+                // Fetch existing parameters
                 PlaybackParams params = player.getPlaybackParams();
                 if (params != null) {
                     params.setPitch(currentPitch);
                     player.setPlaybackParams(params);
                 } else {
-                    // Failsafe if params are null
+                    // Saves the programm if params = null
                     PlaybackParams newParams = new PlaybackParams();
                     newParams.setPitch(currentPitch);
-                    newParams.setSpeed(1.0f); // Missing speed causes crashes
+                    newParams.setSpeed(1.0f); // Sets speed at 1 if it's missing
                     player.setPlaybackParams(newParams);
                 }
             } catch (IllegalArgumentException | IllegalStateException e) {

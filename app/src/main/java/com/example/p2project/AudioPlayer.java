@@ -1,5 +1,6 @@
 package com.example.p2project;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
@@ -49,9 +50,9 @@ public class AudioPlayer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Android Studio Boilerplate for Edge-to-Edge
+        // Boilerplate calibration
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_music_player); // Ensure this matches your XML file name
+        setContentView(R.layout.activity_music_player);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.music_player), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -59,7 +60,7 @@ public class AudioPlayer extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize Audio Logic
+        // Initialize Audio logic
         soundManager = new DualSoundManager(this);
         initViews();
         setupTracks();
@@ -75,8 +76,6 @@ public class AudioPlayer extends AppCompatActivity {
         sound1Heart = findViewById(R.id.sound1_heart);
         sound2Heart = findViewById(R.id.sound2_heart);
 
-        // Note: Make sure you combined btn_play and btn_pause into btn_play_pause in your XML
-        // as mentioned in the previous step!
         btnPlayPause = findViewById(R.id.btn_play_pause);
 
         seekbarVolume = findViewById(R.id.seekbar_volume);
@@ -88,7 +87,7 @@ public class AudioPlayer extends AppCompatActivity {
         // rawId -1 = "Remove sound"
         availableTracks.add(new Track(-1, "Remove sound", R.drawable.remove_24px));
 
-        // All the audio tracks, with icons to names nad icons to label them
+        // All the audio tracks, with names and icons to label them
         availableTracks.add(new Track(R.raw.autumn_forest_floor, "Autumn Forest", R.drawable.forest_24px));
         availableTracks.add(new Track(R.raw.deep_forest_rain, "Deep Forest Rain", R.drawable.heavy_rain24px));
         availableTracks.add(new Track(R.raw.fireplace, "Fireplace", R.drawable.fireplace_24px));
@@ -103,11 +102,11 @@ public class AudioPlayer extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        // Sound Selection Clicks
+        // Sound Selection clicks
         sound1Image.setOnClickListener(v -> showSoundSelectionDialog(1));
         sound2Image.setOnClickListener(v -> showSoundSelectionDialog(2));
 
-        // Play/Pause Click
+        // Play/pause Click
         if (btnPlayPause != null) {
             btnPlayPause.setOnClickListener(v -> {
                 if (soundManager.isAnyPlaying()) {
@@ -119,7 +118,7 @@ public class AudioPlayer extends AppCompatActivity {
             });
         }
 
-        // Favorite Clicks
+        // Favorite clicks
         sound1Heart.setOnClickListener(v -> toggleFavoriteForSlot(1));
         sound2Heart.setOnClickListener(v -> toggleFavoriteForSlot(2));
 
@@ -136,7 +135,7 @@ public class AudioPlayer extends AppCompatActivity {
         seekbarPitch.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Map 0-100 to 0.1f-2.0f pitch (50 = 1.0f Normal Speed)
+                // Sets the boundaries for volume, ensuring no program crashes
                 float pitch;
                 if (progress < 50) {
                     pitch = 0.5f + (progress / 100f);
@@ -150,10 +149,13 @@ public class AudioPlayer extends AppCompatActivity {
         });
     }
 
+
     private void showSoundSelectionDialog(int slotNumber) {
+        // Shows the pop-up with the audio files
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select a Sound");
 
+        // Pop-up grid construction
         GridView gridView = new GridView(this);
         gridView.setNumColumns(3);
         gridView.setPadding(16, 16, 16, 16);
@@ -221,8 +223,9 @@ public class AudioPlayer extends AppCompatActivity {
         }
     }
 
-    private void updateUI() {
-        // Update Slot 1
+    @SuppressLint("SetTextI18n")
+    private void updateUI() { // Adding icons to UI
+        // Slot 1
         if (currentTrack1 == null) {
             sound1Image.setImageResource(R.drawable.add_box_24px);
             sound1Text.setText("Add a sound");
@@ -235,7 +238,7 @@ public class AudioPlayer extends AppCompatActivity {
                     ? R.drawable.checked_favorite_24px : R.drawable.uchecked_favorite_24px);
         }
 
-        // Update Slot 2
+        // Slot 2
         if (currentTrack2 == null) {
             sound2Image.setImageResource(R.drawable.add_box_24px);
             sound2Text.setText("Add a sound");
@@ -265,7 +268,7 @@ public class AudioPlayer extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         if (soundManager != null) {
-            soundManager.releaseAll(); // Prevent memory leaks and background playing
+            soundManager.releaseAll(); // No memory leaks
         }
     }
 }
