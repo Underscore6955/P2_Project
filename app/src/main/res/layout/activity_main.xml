@@ -80,6 +80,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.09"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/open_main_button"
+        app:layout_constraintEnd_toEndOf="@id/open_main_button"
+        app:layout_constraintBottom_toBottomOf="@id/open_main_button"
+        android:src="@drawable/home_icon"
+        android:background="@null"
+        />
     <Button
         android:id="@+id/changeToInventory"
         android:layout_width="0dp"
@@ -89,6 +101,18 @@
         android:background="@drawable/sharp_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.09"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/changeToInventory"
+        app:layout_constraintEnd_toEndOf="@id/changeToInventory"
+        app:layout_constraintBottom_toBottomOf="@id/changeToInventory"
+        android:src="@drawable/inventory_icon"
+        android:background="@null"
         />
     <Button
         android:id="@+id/open_sounds_button"
@@ -100,6 +124,18 @@
         android:background="@drawable/sharp_rectangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.09"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/open_sounds_button"
+        app:layout_constraintEnd_toEndOf="@id/open_sounds_button"
+        app:layout_constraintBottom_toBottomOf="@id/open_sounds_button"
+        android:src="@drawable/sound_icon"
+        android:background="@null"
         />
     <LinearLayout
         android:id="@+id/activeTop"

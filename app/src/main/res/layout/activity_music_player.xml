@@ -167,36 +167,93 @@
         android:id="@+id/btn_play_pause"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="48dp"
         android:src="@drawable/play_circle_24px"
         android:clickable="true"
         android:focusable="true"
         app:tint="#D3D3D3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekbar_pitch" />
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_pitch"
+        app:layout_constraintBottom_toBottomOf="@+id/open_main_button"/>
 
     <ImageView
         android:id="@+id/btn_pause"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="48dp"
         android:src="@drawable/pause_circle_24px"
         android:visibility="invisible"
         app:tint="#D3D3D3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekbar_pitch" />
-
-    <ImageView
-        android:id="@+id/btn_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/arrow_back_24px"
-        app:tint="#D3D3D3"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_pitch"
+        app:layout_constraintBottom_toBottomOf="@+id/open_main_button" />
+    <Button
+        android:id="@+id/open_main_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.33"
+        app:layout_constraintHeight_percent="0.08"
+        android:background="@drawable/sharp_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.09"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/open_main_button"
+        app:layout_constraintEnd_toEndOf="@id/open_main_button"
+        app:layout_constraintBottom_toBottomOf="@id/open_main_button"
+        android:src="@drawable/home_icon"
+        android:background="@null"
+        />
+    <Button
+        android:id="@+id/changeToInventory"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.33"
+        app:layout_constraintHeight_percent="0.08"
+        android:background="@drawable/sharp_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.09"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/changeToInventory"
+        app:layout_constraintEnd_toEndOf="@id/changeToInventory"
+        app:layout_constraintBottom_toBottomOf="@id/changeToInventory"
+        android:src="@drawable/inventory_icon"
+        android:background="@null"
+        />
+    <Button
+        android:id="@+id/open_sounds_button"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.33"
+        app:layout_constraintHeight_percent="0.08"
+        android:background="@drawable/sharp_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.09"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/open_sounds_button"
+        app:layout_constraintEnd_toEndOf="@id/open_sounds_button"
+        app:layout_constraintBottom_toBottomOf="@id/open_sounds_button"
+        android:src="@drawable/sound_icon"
+        android:background="@null"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

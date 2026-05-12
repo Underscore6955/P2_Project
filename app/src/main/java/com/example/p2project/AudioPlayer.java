@@ -18,6 +18,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.p2project.IdleGame.DualSoundManager; // Make sure this import matches your DualSoundManager's package
+import com.example.p2project.main_screen.ChangeScreenButton;
+import com.example.p2project.main_screen.MainScreen;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,10 @@ public class AudioPlayer extends HasTreats {
         setupTracks();
         setupListeners();
         updateUI();
+        ChangeScreenButton mainButton = new ChangeScreenButton(findViewById(R.id.open_main_button), MainScreen.class, this);
+        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this);
+        invButton.button.setOnClickListener(v-> invButton.clicked());
+        mainButton.button.setOnClickListener(v -> mainButton.clicked());
     }
 
     private void initViews() {
