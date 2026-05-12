@@ -25,32 +25,17 @@ public class Encoding
         {
             animals.append(encodeAnimal(curAnimal)).append("/");
         }
-        return deEncodeString(animals.toString(), 1);
+        return animals.toString();
     }
     String encodeAnimal(Animal curAnimal)
     {
         try {return curAnimal.name + ":" + curAnimal.production + ":" + curAnimal.passive;} catch (NullPointerException e) {return "null";}
     }
-    String deEncodeString(String curString, int deOrEncode)
-    {
-        StringBuilder encodedString = new StringBuilder();
-        for (char curChar : curString.toCharArray())
-        {
-            if(curChar != ':' && curChar != '/')
-            {
-                encodedString.append((char) (curChar + 5 * deOrEncode));
-            }
-            else
-            {
-                encodedString.append(curChar);
-            }
-        }
-        return encodedString.toString();
-    }
+
     ArrayList<Animal> decodeAnimalList(String curString)
     {
         ArrayList<Animal> animals = new ArrayList<Animal>();
-        for (String curAnimal : deEncodeString(curString, -1).split("/"))
+        for (String curAnimal : curString.split("/"))
         {
             try{animals.add(deCodeAnimal(curAnimal));} catch (NullPointerException e) {}
         }
@@ -99,7 +84,7 @@ public class Encoding
             String[] animals = new String(in.readAllBytes()).split("/");
             for (int i = 0; i < Inventory.activeAnimals.length; i++)
             {
-                Inventory.activeAnimals[i] = deCodeAnimal(deEncodeString(animals[i],-1));
+                Inventory.activeAnimals[i] = deCodeAnimal(animals[i]);
             }
         }
     }

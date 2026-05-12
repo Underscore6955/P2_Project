@@ -61,7 +61,7 @@ public class AudioPlayer extends HasTreats {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        view = findViewById(R.id.music_player);
         // Initialize Audio logic
         soundManager = new DualSoundManager(this);
         initViews();

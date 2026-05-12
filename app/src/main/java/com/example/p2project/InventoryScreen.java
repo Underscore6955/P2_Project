@@ -32,6 +32,7 @@ public class InventoryScreen extends HasTreats {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        view = findViewById(R.id.inventoryActivity);
         treatView = findViewById(R.id.treat_view);
         earnView = findViewById(R.id.earn_view);
         insertButtons();
