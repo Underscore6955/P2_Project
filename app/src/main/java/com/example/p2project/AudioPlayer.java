@@ -85,10 +85,10 @@ public class AudioPlayer extends AppCompatActivity {
 
     private void setupTracks() {
         availableTracks = new ArrayList<>();
-        // ID -1 represents "Remove Sound"
-        availableTracks.add(new Track(-1, "Remove Sound", R.drawable.remove_24px));
+        // rawId -1 = "Remove sound"
+        availableTracks.add(new Track(-1, "Remove sound", R.drawable.remove_24px));
 
-        // Populate based on your raw folder (Swap the placeholder drawables with your actual ones if needed)
+        // All the audio tracks, with icons to names nad icons to label them
         availableTracks.add(new Track(R.raw.autumn_forest_floor, "Autumn Forest", R.drawable.forest_24px));
         availableTracks.add(new Track(R.raw.deep_forest_rain, "Deep Forest Rain", R.drawable.heavy_rain24px));
         availableTracks.add(new Track(R.raw.fireplace, "Fireplace", R.drawable.fireplace_24px));
