@@ -53,7 +53,7 @@ public class AudioPlayer extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_music_player); // Ensure this matches your XML file name
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.music_player), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -86,20 +86,20 @@ public class AudioPlayer extends AppCompatActivity {
     private void setupTracks() {
         availableTracks = new ArrayList<>();
         // ID -1 represents "Remove Sound"
-        availableTracks.add(new Track(-1, "Remove Sound", R.drawable.add_box_24px));
+        availableTracks.add(new Track(-1, "Remove Sound", R.drawable.remove_24px));
 
         // Populate based on your raw folder (Swap the placeholder drawables with your actual ones if needed)
-        availableTracks.add(new Track(R.raw.autumn_forest_floor, "Autumn Forest", R.drawable.heavy_rain24px));
+        availableTracks.add(new Track(R.raw.autumn_forest_floor, "Autumn Forest", R.drawable.forest_24px));
         availableTracks.add(new Track(R.raw.deep_forest_rain, "Deep Forest Rain", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.fireplace, "Fireplace", R.drawable.heavy_rain24px));
+        availableTracks.add(new Track(R.raw.fireplace, "Fireplace", R.drawable.fireplace_24px));
         availableTracks.add(new Track(R.raw.heavy_rain, "Heavy Rain", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.jungle_floor, "Jungle Floor", R.drawable.heavy_rain24px));
+        availableTracks.add(new Track(R.raw.jungle_floor, "Jungle Floor", R.drawable.nature_24px));
         availableTracks.add(new Track(R.raw.light_rain, "Light Rain", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.spring_forest_floor, "Spring Forest", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.village_night, "Village Night", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.wind_turbine, "Wind Turbine", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.windy_cornfield, "Windy Cornfield", R.drawable.heavy_rain24px));
-        availableTracks.add(new Track(R.raw.windy_grassy_field, "Windy Grass", R.drawable.heavy_rain24px));
+        availableTracks.add(new Track(R.raw.spring_forest_floor, "Spring Forest", R.drawable.forest_24px));
+        availableTracks.add(new Track(R.raw.village_night, "Village Night", R.drawable.village_24px));
+        availableTracks.add(new Track(R.raw.wind_turbine, "Wind Turbine", R.drawable.turbine_24px));
+        availableTracks.add(new Track(R.raw.windy_cornfield, "Windy Cornfield", R.drawable.cornfield_24px));
+        availableTracks.add(new Track(R.raw.windy_grassy_field, "Windy Grass", R.drawable.grass_24px));
     }
 
     private void setupListeners() {
@@ -137,7 +137,12 @@ public class AudioPlayer extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Map 0-100 to 0.1f-2.0f pitch (50 = 1.0f Normal Speed)
-                float pitch = Math.max(0.1f, progress / 50f);
+                float pitch;
+                if (progress < 50) {
+                    pitch = 0.5f + (progress / 100f);
+                } else {
+                    pitch = 1.0f + ((progress - 50) / 50f);
+                }
                 soundManager.setMasterPitch(pitch);
             }
             @Override public void onStartTrackingTouch(SeekBar seekBar) {}

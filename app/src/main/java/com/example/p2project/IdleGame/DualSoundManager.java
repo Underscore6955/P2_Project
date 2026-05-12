@@ -84,25 +84,44 @@ public class DualSoundManager {
         this.currentPitch = pitch;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (player1 != null && player1.isPlaying()) {
-                PlaybackParams params = new PlaybackParams();
-                params.setPitch(currentPitch);
-                player1.setPlaybackParams(params);
-            }
-            if (player2 != null && player2.isPlaying()) {
-                PlaybackParams params = new PlaybackParams();
-                params.setPitch(currentPitch);
-                player2.setPlaybackParams(params);
+            try {
+                if (player1 != null && player1.isPlaying()) {
+                    PlaybackParams params = player1.getPlaybackParams();
+                    params.setPitch(currentPitch);
+                    player1.setPlaybackParams(params);
+                }
+                if (player2 != null && player2.isPlaying()) {
+                    PlaybackParams params = player2.getPlaybackParams();
+                    params.setPitch(currentPitch);
+                    player2.setPlaybackParams(params);
+                }
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                // Catch native hardware limits so app don't crash
+                e.printStackTrace();
             }
         }
     }
 
     private void applyVolumeAndPitch(MediaPlayer player) {
         player.setVolume(currentVolume, currentVolume);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            PlaybackParams params = new PlaybackParams();
-            params.setPitch(currentPitch);
-            player.setPlaybackParams(params);
+            try {
+                // Fetch existing parameters rather than creating blank ones
+                PlaybackParams params = player.getPlaybackParams();
+                if (params != null) {
+                    params.setPitch(currentPitch);
+                    player.setPlaybackParams(params);
+                } else {
+                    // Failsafe if params are null
+                    PlaybackParams newParams = new PlaybackParams();
+                    newParams.setPitch(currentPitch);
+                    newParams.setSpeed(1.0f); // Missing speed causes crashes
+                    player.setPlaybackParams(newParams);
+                }
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                e.printStackTrace();
+            }
         }
     }
 
