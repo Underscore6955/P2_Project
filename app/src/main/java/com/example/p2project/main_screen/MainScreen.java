@@ -21,6 +21,7 @@ import com.example.p2project.IdleGame.DayNight.ScreenStateReceiver;
 import com.example.p2project.IdleGame.EarnThread;
 import com.example.p2project.IdleGame.Encoding;
 import com.example.p2project.IdleGame.Inventory;
+import com.example.p2project.IdleGame.ShopScreen;
 import com.example.p2project.InventoryScreen;
 import com.example.p2project.R;
 import com.google.android.material.snackbar.Snackbar;
@@ -74,6 +75,8 @@ public class MainScreen extends HasTreats
         insertActive("empty");
         Inventory.updateActive("empty");
         ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this, dayNightSystem);
+        ChangeScreenButton shopButton = new ChangeScreenButton(findViewById(R.id.open_sounds_button), ShopScreen.class, this, dayNightSystem);
+        shopButton.button.setOnClickListener(v-> shopButton.clicked());
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }
     @Override

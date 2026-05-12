@@ -16,6 +16,7 @@ import com.example.p2project.IdleGame.DayNight.DayNightSystem;
 import com.example.p2project.IdleGame.Inventory;
 import com.example.p2project.IdleGame.Inventory.ActiveSlot;
 import com.example.p2project.IdleGame.Inventory.InventorySlot;
+import com.example.p2project.IdleGame.ShopScreen;
 import com.example.p2project.main_screen.ChangeScreenButton;
 import com.example.p2project.main_screen.MainScreen;
 
@@ -36,6 +37,8 @@ public class InventoryScreen extends HasTreats {
         insertButtons();
         Inventory.updateInventory("inv_background");
         ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.open_main_button), MainScreen.class, this, dayNightSystem);
+        ChangeScreenButton shopButton = new ChangeScreenButton(findViewById(R.id.open_sounds_button), ShopScreen.class, this, dayNightSystem);
+        shopButton.button.setOnClickListener(v-> shopButton.clicked());
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }
     @Override
