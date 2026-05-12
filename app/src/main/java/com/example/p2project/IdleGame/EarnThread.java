@@ -29,8 +29,11 @@ public class EarnThread extends Thread{
             @Override
             public void run()
             {
-                main.treatView.setText(String.valueOf(CurrencyTracker.treats.intValue()));
-                main.earnView.setText(String.valueOf(CurrencyTracker.curEarn().intValue() + "/second"));
+                if (main.treatView != null)
+                {
+                    main.treatView.setText(String.valueOf(CurrencyTracker.treats.intValue()));
+                    main.earnView.setText(String.valueOf(CurrencyTracker.curEarn().intValue() + "/second"));
+                }
             }
         });
     }

@@ -12,7 +12,7 @@ import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.p2project.MainActivity;
+import com.example.p2project.main_screen.MainScreen;
 
 public class AudioService extends Service {
     private DualSoundManager soundManager;
@@ -42,7 +42,7 @@ public class AudioService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId){
         createNotificationChannel();
 
-        Intent notificationIntent = new Intent(this, MainActivity.class);
+        Intent notificationIntent = new Intent(this, MainScreen.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 

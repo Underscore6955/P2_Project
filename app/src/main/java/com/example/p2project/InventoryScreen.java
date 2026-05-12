@@ -36,8 +36,8 @@ public class InventoryScreen extends HasTreats {
         earnView = findViewById(R.id.earn_view);
         insertButtons();
         Inventory.updateInventory("inv_background");
-        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.open_main_button), MainScreen.class, this, dayNightSystem);
-        ChangeScreenButton shopButton = new ChangeScreenButton(findViewById(R.id.open_sounds_button), ShopScreen.class, this, dayNightSystem);
+        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.open_main_button), MainScreen.class, this);
+        ChangeScreenButton shopButton = new ChangeScreenButton(findViewById(R.id.open_sounds_button), AudioPlayer.class, this);
         shopButton.button.setOnClickListener(v-> shopButton.clicked());
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }

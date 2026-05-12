@@ -29,8 +29,8 @@ public class ShopScreen extends HasTreats
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this, dayNightSystem);
-        ChangeScreenButton mainButton = new ChangeScreenButton(findViewById(R.id.open_main_button), MainScreen.class, this, dayNightSystem);
+        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this);
+        ChangeScreenButton mainButton = new ChangeScreenButton(findViewById(R.id.open_main_button), MainScreen.class, this);
         invButton.button.setOnClickListener(v -> invButton.clicked());
         mainButton.button.setOnClickListener(v -> mainButton.clicked());
     }

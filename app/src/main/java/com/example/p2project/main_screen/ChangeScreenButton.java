@@ -19,8 +19,7 @@ public class ChangeScreenButton
     public Button button;
     Class<?> changeScreen;
     AppCompatActivity thisScreen;
-    DayNightSystem dayNightSystem;
-    public ChangeScreenButton(Button button, Class<?> changeScreen, HasTreats thisScreen, DayNightSystem dayNightSystem)
+    public ChangeScreenButton(Button button, Class<?> changeScreen, HasTreats thisScreen)
     {
         this.button = button;
         this.changeScreen = changeScreen;

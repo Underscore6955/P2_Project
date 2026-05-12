@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.p2project.AudioPlayer;
 import com.example.p2project.HasTreats;
 import com.example.p2project.IdleGame.Animal;
 import com.example.p2project.IdleGame.CurrencyTracker;
@@ -74,8 +75,8 @@ public class MainScreen extends HasTreats
         }
         insertActive("empty");
         Inventory.updateActive("empty");
-        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this, dayNightSystem);
-        ChangeScreenButton shopButton = new ChangeScreenButton(findViewById(R.id.open_sounds_button), ShopScreen.class, this, dayNightSystem);
+        ChangeScreenButton invButton = new ChangeScreenButton(findViewById(R.id.changeToInventory), InventoryScreen.class, this);
+        ChangeScreenButton shopButton = new ChangeScreenButton(findViewById(R.id.open_sounds_button), AudioPlayer.class, this);
         shopButton.button.setOnClickListener(v-> shopButton.clicked());
         invButton.button.setOnClickListener(v -> invButton.clicked());
     }

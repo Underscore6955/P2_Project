@@ -22,7 +22,7 @@ import com.example.p2project.IdleGame.DualSoundManager; // Make sure this import
 import java.util.ArrayList;
 import java.util.List;
 
-public class AudioPlayer extends AppCompatActivity {
+public class AudioPlayer extends HasTreats {
 
     private DualSoundManager soundManager;
     private ImageView sound1Image, sound2Image, sound1Heart, sound2Heart, btnPlayPause;

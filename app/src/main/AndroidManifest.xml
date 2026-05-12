@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
-    xmlns:tools="http://schemas.android.com/tools" >
-
+    <attribution android:tag="audioPlayback" android:label="@string/audio_playback_attribution" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -19,7 +17,7 @@
         android:theme="@style/Theme.P2Project" >
         <activity
             android:name=".AudioPlayer"
-            android:exported="true"/>
+            android:exported="true">
         </activity>
         <activity
             android:name=".main_screen.MainScreen"
@@ -31,7 +29,7 @@
         </activity>
         <activity
             android:name=".InventoryScreen"
-            android:exported="false" />
+            android:exported="true" >
         </activity> <!-- Lets the audio from the app play in the background + when screen is locked -->
         <service
             android:name=".IdleGame.AudioService"
