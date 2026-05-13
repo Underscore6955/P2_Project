@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.example.p2project.IdleGame.DayNight.DayNightSystem;
 import com.example.p2project.R;
 import com.bumptech.glide.Glide;
+import com.example.p2project.main_screen.MainScreen;
+
 import org.w3c.dom.Text;
 
 import java.io.File;
@@ -62,6 +64,7 @@ public class    Inventory
         {
             activeSlots[i].content = activeAnimals[i];
             activeSlots[i].UpdateIcon(defaultIcon);
+            if (defaultIcon.equals("empty")) activeSlots[i].startAnim();
         }
     }
     public static class InventoryButton
