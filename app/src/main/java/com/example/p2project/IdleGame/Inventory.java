@@ -110,14 +110,14 @@ public class    Inventory
                 {
                 public void onClick(View v)
                     {
-                        if (content != null) {showMenu();}
+                        if (content != null) {showMenu();} else {return;}
                         Button equipButton = curDialog.findViewById(R.id.equip_button);
                         equipButton.setOnClickListener(new View.OnClickListener()
                         {
                             public void onClick(View v)
                             {
                                 curDialog.dismiss();
-                                for (int i = 0; i < activeAnimals.length; i++) {if (content != null) {activeAnimals[i] = content;inventory.remove(content); break;}}
+                                for (int i = 0; i < activeAnimals.length; i++) {if (activeAnimals[i] == null) {activeAnimals[i] = content;inventory.remove(content); break;}}
                                 updateInventory(defaultIcon);
                             }
                         }
