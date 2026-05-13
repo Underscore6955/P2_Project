@@ -3,6 +3,7 @@ package com.example.p2project;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -41,8 +42,8 @@ public class AudioPlayer extends HasTreats {
     private TextView sound1Text, sound2Text;
     private SeekBar seekbarVolume, seekbarPitch;
 
-    private Track currentTrack1 = null;
-    private Track currentTrack2 = null;
+    private static Track currentTrack1 = null;
+    private static Track currentTrack2 = null;
     private List<Track> availableTracks;
 
     // Helper class to hold track data
@@ -103,6 +104,7 @@ public class AudioPlayer extends HasTreats {
             startService(intent);
         }
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+    //updateUI();
     }
 
     @Override
@@ -292,6 +294,7 @@ public class AudioPlayer extends HasTreats {
     private void updateUI() { // Adding icons to UI
         // Slot 1
         if (currentTrack1 == null) {
+            Log.d("sound", "null");
             sound1Image.setImageResource(R.drawable.add_box_24px);
             sound1Text.setText("Add a sound");
             sound1Heart.setVisibility(View.INVISIBLE);
