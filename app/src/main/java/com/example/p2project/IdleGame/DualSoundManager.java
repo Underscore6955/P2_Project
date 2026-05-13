@@ -16,6 +16,8 @@ public class DualSoundManager {
     private MediaPlayer player1;
     private MediaPlayer player2;
 
+    private int currentTrack1Id = -1;
+    private int currentTrack2Id = -1;
     // Sleep timer
     private CountDownTimer sleepTimer;
 
@@ -43,7 +45,7 @@ public class DualSoundManager {
 
     public void PlaySound1(int rawResourceId) {
         removeSound1();
-
+        currentTrack1Id = rawResourceId;
         player1 = MediaPlayer.create(context, rawResourceId);
         if (player1 != null) {
             player1.setLooping(true);
@@ -54,7 +56,7 @@ public class DualSoundManager {
 
     public void playSound2(int rawResourceId) {
         removeSound2();
-
+        currentTrack2Id = rawResourceId;
         player2 = MediaPlayer.create(context, rawResourceId);
         if (player2 != null) {
             player2.setLooping(true);
@@ -148,22 +150,20 @@ public class DualSoundManager {
 
     public void removeSound1() {
         if (player1 != null) {
-            if (player1.isPlaying()) {
-                player1.stop();
-            }
+            if (player1.isPlaying()) player1.stop();
             player1.release();
             player1 = null;
         }
+        currentTrack1Id = -1;
     }
 
     public void removeSound2() {
         if (player2 != null) {
-            if (player2.isPlaying()) {
-                player2.stop();
-            }
+            if (player2.isPlaying()) player2.stop();
             player2.release();
             player2 = null;
         }
+        currentTrack2Id = -1;
     }
 
     public void releaseAll() {
@@ -199,4 +199,6 @@ public class DualSoundManager {
             sleepTimer = null;
         }
     }
+    public int getCurrentTrack1Id(){ return currentTrack1Id; }
+    public int getCurrentTrack2Id(){return currentTrack2Id; }
 }
