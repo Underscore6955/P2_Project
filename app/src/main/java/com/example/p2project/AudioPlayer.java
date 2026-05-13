@@ -39,8 +39,8 @@ public class AudioPlayer extends AppCompatActivity {
     private TextView sound1Text, sound2Text;
     private SeekBar seekbarVolume, seekbarPitch;
 
-    private Track currentTrack1 = null;
-    private Track currentTrack2 = null;
+    private static Track currentTrack1 = null;
+    private static Track currentTrack2 = null;
     private List<Track> availableTracks;
 
     // Helper class to hold track data
