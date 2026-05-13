@@ -117,7 +117,7 @@ public class    Inventory
                             public void onClick(View v)
                             {
                                 curDialog.dismiss();
-                                for (int i = 0; i < activeAnimals.length; i++) {if (activeAnimals[i] == null) {activeAnimals[i] = content;inventory.remove(content); break;}}
+                                for (int i = 0; i < activeAnimals.length; i++) {if (content != null) {activeAnimals[i] = content;inventory.remove(content); break;}}
                                 updateInventory(defaultIcon);
                             }
                         }
