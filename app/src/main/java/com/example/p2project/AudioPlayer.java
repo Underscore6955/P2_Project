@@ -11,18 +11,28 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.p2project.IdleGame.AudioService;
 import com.example.p2project.IdleGame.DualSoundManager; // Make sure this import matches your DualSoundManager's package
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AudioPlayer extends AppCompatActivity {
+
+    private AudioService audioService;
+    private boolean isBound = false;
 
     private DualSoundManager soundManager;
     private ImageView sound1Image, sound2Image, sound1Heart, sound2Heart, btnPlayPause;
@@ -49,7 +59,6 @@ public class AudioPlayer extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Boilerplate calibration
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_music_player);
@@ -60,14 +69,63 @@ public class AudioPlayer extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize Audio logic
-        soundManager = new DualSoundManager(this);
         initViews();
         setupTracks();
         setupListeners();
+    }
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            AudioService.LocalBinder binder = (AudioService.LocalBinder) service;
+            audioService = binder.getService();
+            soundManager = audioService.getSoundManager();
+            isBound = true;
+
+            restorePlayingState();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            isBound = false;
+        }
+    };
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent = new Intent(this, AudioService.class);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
+        }
+        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (isBound) {
+            unbindService(serviceConnection);
+            isBound = false;
+        }
+    }
+
+    private void restorePlayingState() {
+        int t1Id = soundManager.getCurrentTrack1Id();
+        int t2Id = soundManager.getCurrentTrack2Id();
+
         updateUI();
     }
 
+    private Track findTrackById(int rawId) {
+        if (rawId==-1) return null;
+        for (Track track : availableTracks) {
+            if (track.rawId == rawId) return track;
+        }
+        return null;
+    }
+    
     private void initViews() {
         sound1Image = findViewById(R.id.sound1_image);
         sound2Image = findViewById(R.id.sound2_image);
