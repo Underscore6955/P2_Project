@@ -25,7 +25,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.p2project.IdleGame.AudioService;
-import com.example.p2project.IdleGame.DualSoundManager; // Make sure this import matches your DualSoundManager's package
+import com.example.p2project.IdleGame.DualSoundManager;
 import com.example.p2project.main_screen.ChangeScreenButton;
 import com.example.p2project.main_screen.MainScreen;
 
@@ -46,7 +46,7 @@ public class AudioPlayer extends HasTreats {
     private static Track currentTrack2 = null;
     private List<Track> availableTracks;
 
-    // Helper class to hold track data
+    // Helper class, holds track data
     private static class Track {
         int rawId;
         String name;
@@ -104,7 +104,6 @@ public class AudioPlayer extends HasTreats {
             startService(intent);
         }
         bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
-    //updateUI();
     }
 
     @Override
@@ -202,7 +201,7 @@ public class AudioPlayer extends HasTreats {
         seekbarPitch.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // Sets the boundaries for volume, ensuring no program crashes
+                // Sets the boundaries for volume, ensuring no crashes
                 float pitch;
                 if (progress < 50) {
                     pitch = 0.5f + (progress / 100f);

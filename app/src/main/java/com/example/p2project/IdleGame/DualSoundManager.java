@@ -98,7 +98,7 @@ public class DualSoundManager {
                     player2.setPlaybackParams(params);
                 }
             } catch (IllegalArgumentException | IllegalStateException e) {
-                // Catch native hardware limits so app don't crash
+                // Catch native hardware limits so app doesn't crash
                 e.printStackTrace();
             }
         }
@@ -115,10 +115,10 @@ public class DualSoundManager {
                     params.setPitch(currentPitch);
                     player.setPlaybackParams(params);
                 } else {
-                    // Saves the programm if params = null
+                    // Saves the program if params = null
                     PlaybackParams newParams = new PlaybackParams();
                     newParams.setPitch(currentPitch);
-                    newParams.setSpeed(1.0f); // Sets speed at 1 if it's missing
+                    newParams.setSpeed(1.0f); // Set speed at 1 if it's missing
                     player.setPlaybackParams(newParams);
                 }
             } catch (IllegalArgumentException | IllegalStateException e) {
