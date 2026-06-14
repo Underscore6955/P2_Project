@@ -3,8 +3,7 @@ package com.example.p2project.IdleGame;
 public class Animal
 {
     String name;
-    Double production;
-    Double passive;
+    Double production, passive;
     Integer level = 1;
     Double xp = 0D;
     public Animal (String name, Double production, Double passive)
