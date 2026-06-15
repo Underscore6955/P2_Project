@@ -2,6 +2,9 @@ package com.example.p2project;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,6 +29,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.p2project.IdleGame.AudioService;
 import com.example.p2project.IdleGame.DualSoundManager;
+import com.example.p2project.IdleGame.Stories;
 import com.example.p2project.main_screen.ChangeScreenButton;
 import com.example.p2project.main_screen.MainScreen;
 
@@ -46,6 +50,7 @@ public class AudioPlayer extends HasTreats {
     private static Track currentTrack2 = null;
     private List<Track> availableTracks;
 
+    private Stories stories;
     // Helper class, holds track data
     private static class Track {
         int rawId;
@@ -73,6 +78,7 @@ public class AudioPlayer extends HasTreats {
         });
         view = findViewById(R.id.music_player);
         // Initialize Audio logic
+        initializeStories();
         initViews();
         setupTracks();
         setupListeners();
@@ -337,5 +343,17 @@ public class AudioPlayer extends HasTreats {
         if (soundManager != null) {
             soundManager.releaseAll(); // No memory leaks
         }
+    }
+    void initializeStories()
+    {
+        stories = new Stories();
+        findViewById(R.id.open_stories).setOnClickListener(v ->
+        {
+            Dialog dialog = new Dialog(this);
+            dialog.setContentView(R.layout.stories_layout);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            dialog.show();
+            stories.assignButtons(this, dialog);
+        });
     }
 }

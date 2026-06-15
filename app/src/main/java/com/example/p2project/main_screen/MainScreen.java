@@ -50,15 +50,15 @@ public class MainScreen extends HasTreats
         //data.edit().putBoolean("firstRun", true).apply();
         if (data.getBoolean("firstRun", true))
         {
-            Inventory.inventory.add(new Animal("Polar_Bear",6D, 0.5D));
-            Inventory.inventory.add(new Animal("Cat",2D, 4D));
-            Inventory.inventory.add(new Animal("Chameleon",3D, 3D));
-            Inventory.inventory.add(new Animal("Chinchilla",2D, 3D));
-            Inventory.inventory.add(new Animal("Crab",7D, 0D));
-            Inventory.inventory.add(new Animal("Donkey",5D, 1D));
-            Inventory.inventory.add(new Animal("Fox",3D, 4D));
-            Inventory.inventory.add(new Animal("Jellyfish",1D, 3D));
-            Inventory.inventory.add(new Animal("Panda",1D, 1D));
+            Inventory.inventory.add(new Animal("Polar_Bear",6D, 0.5D,1, new Integer[]{}));
+            Inventory.inventory.add(new Animal("Cat",2D, 4D,1, new Integer[]{3,6,10}));
+            Inventory.inventory.add(new Animal("Chameleon",3D, 3D,1, new Integer[]{}));
+            Inventory.inventory.add(new Animal("Chinchilla",2D, 3D,1, new Integer[]{}));
+            Inventory.inventory.add(new Animal("Crab",7D, 0D,1, new Integer[]{}));
+            Inventory.inventory.add(new Animal("Donkey",5D, 1D,1, new Integer[]{4,7,11}));
+            Inventory.inventory.add(new Animal("Fox",3D, 4D,1, new Integer[]{5,8,10}));
+            Inventory.inventory.add(new Animal("Jellyfish",1D, 3D,1, new Integer[]{}));
+            Inventory.inventory.add(new Animal("Panda",1D, 1D,1, new Integer[]{}));
             data.edit().putString("endPeriod", Instant.now().plusSeconds(7*24*3600).toString()).apply();
             data.edit().putBoolean("firstRun", false).apply();
         }

@@ -29,7 +29,7 @@ public class Encoding
     }
     String encodeAnimal(Animal curAnimal)
     {
-        try {return curAnimal.name + ":" + curAnimal.production + ":" + curAnimal.passive;} catch (NullPointerException e) {return "null";}
+        try {return curAnimal.name + ":" + curAnimal.production + ":" + curAnimal.passive + ":" + curAnimal.level + ":" + Arrays.toString(curAnimal.levels).replace("[", "").replace("]", "").replace(" ", "");} catch (NullPointerException e) {return "null";}
     }
 
     ArrayList<Animal> decodeAnimalList(String curString)
@@ -44,7 +44,13 @@ public class Encoding
     Animal deCodeAnimal(String curString)
     {
         String[] curAnimal = curString.split(":");
-        try {return new Animal(curAnimal[0], Double.parseDouble(curAnimal[1]), Double.parseDouble(curAnimal[2]));} catch (ArrayIndexOutOfBoundsException e){}
+        Integer[] levels = new Integer[curAnimal[4].split(",").length];
+        for (int i = 0; i < curAnimal[4].split(",").length; i++)
+        {
+            levels[i] = Integer.parseInt(curAnimal[4].split(",")[i]);
+        }
+
+        try {return new Animal(curAnimal[0], Double.parseDouble(curAnimal[1]), Double.parseDouble(curAnimal[2]), Integer.parseInt(curAnimal[3]),levels);} catch (ArrayIndexOutOfBoundsException e){}
         return null;
     }
     public void saveInventory(ArrayList<Animal> curList) throws IOException
