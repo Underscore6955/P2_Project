@@ -8,6 +8,9 @@ import android.os.Build;
 import java.util.HashSet;
 import java.util.Set;
 import android.os.CountDownTimer;
+import android.provider.MediaStore;
+
+import com.example.p2project.AudioPlayer;
 
 public class DualSoundManager {
     private Context context;
@@ -68,6 +71,8 @@ public class DualSoundManager {
     public void pauseAll() {
         if (player1 != null && player1.isPlaying()) player1.pause();
         if (player2 != null && player2.isPlaying()) player2.pause();
+        if (AudioPlayer.stories.sound != null && AudioPlayer.stories.sound.isPlaying()) AudioPlayer.stories.sound.pause();
+
     }
 
     public void resumeAll() {
@@ -174,7 +179,7 @@ public class DualSoundManager {
     public boolean isAnyPlaying() {
         boolean p1Playing = player1 !=null && player1.isPlaying();
         boolean p2Playing = player2 !=null && player2.isPlaying();
-        return p1Playing || p2Playing;
+        return p1Playing || p2Playing || AudioPlayer.stories.sound.isPlaying();
     }
     public void startSleepTimer(int minutes) {
         cancelSleepTimer();

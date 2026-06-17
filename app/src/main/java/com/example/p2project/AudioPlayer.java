@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -50,7 +51,7 @@ public class AudioPlayer extends HasTreats {
     private static Track currentTrack2 = null;
     private List<Track> availableTracks;
 
-    private Stories stories;
+    public static Stories stories;
     // Helper class, holds track data
     private static class Track {
         int rawId;
@@ -296,7 +297,7 @@ public class AudioPlayer extends HasTreats {
     }
 
     @SuppressLint("SetTextI18n")
-    private void updateUI() { // Adding icons to UI
+    public void updateUI() { // Adding icons to UI
         // Slot 1
         if (currentTrack1 == null) {
             Log.d("sound", "null");
