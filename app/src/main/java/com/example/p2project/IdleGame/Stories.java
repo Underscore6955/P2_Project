@@ -23,11 +23,13 @@ public class Stories {
         {
             for (int i = 0; i<3; i++)
             {
-                buttons[s][i] = dialog.findViewById(main.getApplicationContext().getResources().getIdentifier((animals[s] + i), "id", main.getApplicationContext().getPackageName()));
-                boolean unlocked;
-                try {unlocked = main.getSharedPreferences("unlockedStories", Context.MODE_PRIVATE).getInt(animals[s],0) >= i+1;} catch(NullPointerException e) {unlocked = false;}
-                dialog.findViewById(main.getApplicationContext().getResources().getIdentifier(("lock_" + animals[s] + (i+1)), "id", main.getApplicationContext().getPackageName())).setVisibility(unlocked ? GONE : VISIBLE);
-                if (unlocked)
+                buttons[s][i] =
+                        dialog.findViewById(main.getApplicationContext().getResources().getIdentifier((animals[s] + i),
+                                "id", main.getApplicationContext().getPackageName()));
+                boolean unlocked = main.getSharedPreferences("unlockedStories", Context.MODE_PRIVATE).getInt(animals[s],0) >= i+1;
+                dialog.findViewById(main.getApplicationContext().getResources().getIdentifier(("lock_" + animals[s] + (i+1)), "id",
+                        main.getApplicationContext().getPackageName())).setVisibility(unlocked ? GONE : VISIBLE);
+                if (unlocked && buttons[s][i] != null)
                 {
                     buttons[s][i].setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v)

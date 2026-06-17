@@ -103,6 +103,7 @@ public class HasTreats extends AppCompatActivity
         {
             if (curAnimal != null)
             {
+                earnedXp += 100;
                 curAnimal.giveXp(earnedXp, this);
             }
         }

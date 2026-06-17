@@ -3,6 +3,7 @@ package com.example.p2project.IdleGame;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.p2project.HasTreats;
 
@@ -32,9 +33,9 @@ public class Animal
             passive *= 1.1;
             for (int i = 0; i < levels.length; i++)
             {
-                if (level >= levels[i]) break;
+                if (level <= levels[i]) break;
                 SharedPreferences prefs = main.getSharedPreferences("unlockedStories", MODE_PRIVATE);
-                prefs.edit().putInt(name.toLowerCase(), Math.max(i, prefs.getInt(name.toLowerCase(), 0))).apply();
+                prefs.edit().putInt(name.toLowerCase(), Math.max(i+1, prefs.getInt(name.toLowerCase(), 0))).apply();
             }
         }
     }
