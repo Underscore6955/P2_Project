@@ -1,5 +1,6 @@
 package com.example.p2project.main_screen;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -110,7 +111,10 @@ public class MainScreen extends HasTreats
     void endPeriod()
     {
         Double averageSleep = ScreenStateReceiver.screenOffTimeTotal/3600/7;
-        Log.d("totalsleep","During the week, you slept for " + ScreenStateReceiver.screenOffTimeTotal/3600 + " hours, thats " + averageSleep + " hours per night on average");
-
+        String message = ("During the week, you slept for " +
+                ScreenStateReceiver.screenOffTimeTotal/3600 +
+                " hours, thats " + averageSleep + " hours per night on average");
+        Snackbar.make(view, message, Snackbar.LENGTH_LONG).show();
+        ScreenStateReceiver.screenOffTimeTotal = 0;
     }
 }

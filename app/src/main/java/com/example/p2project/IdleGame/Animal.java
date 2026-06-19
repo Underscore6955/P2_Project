@@ -27,16 +27,20 @@ public class Animal
         this.xp += xp;
         while (this.xp >= 100D)
         {
-            this.xp -= 100D;
-            level += 1;
-            production *= 1.1;
-            passive *= 1.1;
-            for (int i = 0; i < levels.length; i++)
-            {
-                if (level <= levels[i]) break;
-                SharedPreferences prefs = main.getSharedPreferences("unlockedStories", MODE_PRIVATE);
-                prefs.edit().putInt(name.toLowerCase(), Math.max(i+1, prefs.getInt(name.toLowerCase(), 0))).apply();
-            }
+            levelUp(main);
+        }
+    }
+    void levelUp(HasTreats main)
+    {
+        this.xp -= 100D;
+        level += 1;
+        production *= 1.1;
+        passive *= 1.1;
+        for (int i = 0; i < levels.length; i++)
+        {
+            if (level <= levels[i]) break;
+            SharedPreferences prefs = main.getSharedPreferences("unlockedStories", MODE_PRIVATE);
+            prefs.edit().putInt(name.toLowerCase(), Math.max(i+1, prefs.getInt(name.toLowerCase(), 0))).apply();
         }
     }
 }

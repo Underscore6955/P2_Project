@@ -41,7 +41,8 @@ public class Stories {
                         {
                             Log.d("sound", thisSound);
                             if (sound != null && sound.isPlaying()) {sound.stop(); sound.release();}
-                            int soundId = main.getApplicationContext().getResources().getIdentifier((thisSound),"raw",main.getApplicationContext().getPackageName());
+                            int soundId = main.getApplicationContext().getResources().getIdentifier((thisSound),
+                                    "raw",main.getApplicationContext().getPackageName());
                             if (soundId != 0) sound = MediaPlayer.create(main,soundId);
                             sound.start();
                             main.updateUI();
@@ -51,9 +52,5 @@ public class Stories {
                 }
             }
         }
-    }
-    void insertStoryButton()
-    {
-
     }
 }

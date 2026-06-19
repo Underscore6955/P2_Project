@@ -17,11 +17,9 @@ public class ScreenStateReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (Intent.ACTION_SCREEN_ON.equals(action)) {
-            Log.d("SCREENCHECK", "SCREEN TURNED ON");
-            screenOffTimeTotal += CurrencyTracker.activeBetween(screenOffTime,21,23,59) + CurrencyTracker.activeBetween(screenOffTime,0,9,0);
-            Log.d("SCREENCHECK", "Screen was turned off for" + screenOffTimeTotal + "seconds");
+            screenOffTimeTotal += CurrencyTracker.activeBetween(screenOffTime,21,23,59) +
+                    CurrencyTracker.activeBetween(screenOffTime,0,9,0);
         } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
-            Log.d("SCREENCHECK", "SCREEN TURNED OFF");
             screenOffTime = Instant.now();
         }
     }
